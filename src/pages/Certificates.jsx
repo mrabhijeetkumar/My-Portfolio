@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
 
@@ -69,13 +70,22 @@ const CERTS = {
 };
 
 export default function Certificates() {
+  const { isDark, colors } = useTheme();
   const [selectedCert, setSelectedCert] = useState(null);
 
   return (
     <section className="container" style={{ padding: "40px 0" }}>
-      <div className="card" style={{ background: "#111", borderRadius: 12, padding: 24 }}>
-        <h2 style={{ fontSize: "1.8rem", color: "#fff", marginBottom: 4 }}>Certificates 🏅</h2>
-        <p className="lead" style={{ color: "#aaa" }}>
+      <div className="card" style={{ background: colors.cardBg, borderRadius: 16, padding: 30, border: `1px solid ${colors.border}` }}>
+        <motion.h2
+          className="text-4xl font-semibold mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          style={{ color: '#0066FF', fontSize: '2.5rem', fontWeight: 800 }}
+        >
+          Certificates
+        </motion.h2>
+        <p className="lead" style={{ color: colors.textSecondary }}>
           Explore my certifications.
         </p>
 
@@ -100,13 +110,14 @@ export default function Certificates() {
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                 whileHover={{
                   scale: 1.03,
-                  boxShadow: "0 0 15px rgba(0, 123, 255, 0.4)",
+                  boxShadow: colors.shadow,
                 }}
                 style={{
-                  background: "#1a1a1a",
+                  background: colors.bg,
                   borderRadius: 12,
                   padding: 16,
-                  color: "#fff",
+                  color: colors.text,
+                  border: `1px solid ${colors.border}`,
                 }}
               >
                 <img
@@ -121,7 +132,7 @@ export default function Certificates() {
                   }}
                 />
                 <strong style={{ fontSize: 16 }}>{c.title}</strong>
-                <div className="muted" style={{ fontSize: 13, color: "#bbb" }}>
+                <div className="muted" style={{ fontSize: 13, color: colors.textSecondary }}>
                   {c.org} • {c.date}
                 </div>
 
@@ -130,9 +141,9 @@ export default function Certificates() {
                     className="btn"
                     onClick={() => setSelectedCert(c)}
                     style={{
-                      background: "#007bff",
+                      background: '#0066FF',
                       border: "none",
-                      color: "white",
+                      color: '#fff',
                       borderRadius: 6,
                       padding: "6px 14px",
                       cursor: "pointer",

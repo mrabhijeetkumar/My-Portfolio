@@ -1,6 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
+import AnimatedBackground from './components/AnimatedBackground'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Certificates from './pages/Certificates'
@@ -12,23 +14,26 @@ import SkillNetwork from './pages/Skills'
 
 export default function App() {
   return (
-    <div className="app">
-      <Navbar />
-      <main style={{ flex: 1 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<SkillNetwork />} />
-          <Route path="/certificates" element={<Certificates />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/about" element={<About />} /> {/* ✅ fixed lowercase */}
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <footer className="footer">
-        © {new Date().getFullYear()} Abhijeet Kumar — Built with React
-      </footer>
-    </div>
+    <ThemeProvider>
+      <div className="app">
+        <AnimatedBackground />
+        <Navbar />
+        <main style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<SkillNetwork />} />
+            <Route path="/certificates" element={<Certificates />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/about" element={<About />} /> {/* ✅ fixed lowercase */}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <footer className="footer">
+          © {new Date().getFullYear()} Abhijeet Kumar — Built with React
+        </footer>
+      </div>
+    </ThemeProvider>
   )
 }

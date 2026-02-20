@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
+import { Sun, Moon } from "lucide-react";
 
 const links = [
   { label: "Home", to: "/" },
@@ -13,6 +15,8 @@ const links = [
 ];
 
 export default function Navbar() {
+  const { isDark, toggleTheme, colors } = useTheme();
+
   return (
     <nav
       className="nav"
@@ -21,9 +25,10 @@ export default function Navbar() {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0.8rem 2rem",
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
-        background: "rgba(0,0,0,0.6)",
+        borderBottom: `1px solid ${colors.border}`,
+        background: isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.8)",
         backdropFilter: "blur(10px)",
+        color: colors.text,
       }}
     >
       {/* --- Left Logo + Name --- */}
@@ -36,14 +41,14 @@ export default function Navbar() {
           style={{
             fontWeight: "bold",
             fontSize: "1.4rem",
-            color: "var(--accent)",
+            color: '#0084ff',
           }}
         >
           ABHI
         </motion.div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <h1 style={{ margin: 0, fontSize: 14 }}>Abhijeet Kumar</h1>
-          <div style={{ fontSize: 12, color: "var(--muted)" }}>
+          <h1 style={{ margin: 0, fontSize: 14, color: colors.text }}>Abhijeet Kumar</h1>
+          <div style={{ fontSize: 12, color: colors.textSecondary }}>
             ML • AI Developer
           </div>
         </div>
@@ -72,7 +77,7 @@ export default function Navbar() {
               position: "relative",
               fontSize: "0.95rem",
               textDecoration: "none",
-              color: "white",
+              color: colors.text,
               fontWeight: 500,
             }}
           >
@@ -80,8 +85,8 @@ export default function Navbar() {
               <motion.div
                 whileHover={{
                   scale: 1.1,
-                  color: "var(--accent)",
-                  textShadow: "0 0 8px var(--accent)",
+                  color: '#0084ff',
+                  textShadow: `0 0 8px #0084ff`,
                 }}
                 transition={{ duration: 0.3 }}
                 style={{
@@ -92,7 +97,7 @@ export default function Navbar() {
               >
                 <motion.span
                   animate={{
-                    color: isActive ? "var(--accent)" : "white",
+                    color: isActive ? '#0084ff' : colors.text,
                   }}
                   transition={{ duration: 0.3 }}
                 >
@@ -110,8 +115,8 @@ export default function Navbar() {
                       height: "2px",
                       marginTop: "4px",
                       borderRadius: "1px",
-                      backgroundColor: "var(--accent)",
-                      boxShadow: "0 0 6px var(--accent)",
+                      backgroundColor: '#0084ff',
+                      boxShadow: `0 0 6px #0084ff`,
                     }}
                   />
                 )}
@@ -120,6 +125,29 @@ export default function Navbar() {
           </NavLink>
         ))}
       </div>
+
+      {/* --- Right Theme Toggle --- */}
+      <motion.button
+        onClick={toggleTheme}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        style={{
+          background: colors.cardBg,
+          border: `1px solid ${colors.border}`,
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          color: colors.accent,
+          transition: "all 0.3s ease",
+        }}
+        title={isDark ? "Light Mode" : "Dark Mode"}
+      >
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      </motion.button>
     </nav>
   );
 }

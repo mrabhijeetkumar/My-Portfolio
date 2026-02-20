@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from '../context/ThemeContext'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
-// 🖼️ Public assets resolved against the GitHub Pages base path
 const photo = withBase('profile.png')
 const githubLogo = withBase('github.png')
 const linkedinLogo = withBase('linkedin.png')
@@ -12,6 +12,7 @@ const whatsappLogo = withBase('whatsapp.png')
 const instagramLogo = withBase('insta.png')
 
 export default function Home() {
+  const { isDark, colors } = useTheme()
   const professions = [
     'Machine Learning Engineer',
     "AI Enthusiast",
@@ -26,66 +27,200 @@ export default function Home() {
     { img: instagramLogo, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
       style={{
-        minHeight: '90vh',
+        minHeight: '100vh',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        gap: '3rem',
         alignItems: 'center',
-        padding: '3rem 2rem 1rem',
-        background: 'radial-gradient(circle at 30% 30%, rgba(0,255,200,0.08), transparent 80%)',
-        color: '#fff',
+        padding: '4rem 2rem',
+        background: isDark
+          ? 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,30,60,0.6) 50%, rgba(0,0,0,0.9) 100%), radial-gradient(circle at 30% 30%, rgba(0,255,200,0.08), transparent 80%)'
+          : 'linear-gradient(135deg, rgba(240,245,255,0.8) 0%, rgba(230,240,255,0.5) 100%)',
+        color: colors.text,
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      <style>
-        {`
-          @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-          }
-          @keyframes blink {
-            50% { border-color: transparent; }
-          }
-          .typing-effect {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid var(--accent);
+      <style>{`
+        @keyframes typing {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        @keyframes typingWithHiddenCursor {
+          0% {
             width: 0;
-            animation: typing 3.5s steps(40, end) forwards, blink .8s infinite;
+            border-right-color: #0084ff;
           }
-        `}
-      </style>
+          99.9% {
+            width: 100%;
+            border-right-color: #0084ff;
+          }
+          100% {
+            width: 100%;
+            border-right-color: transparent;
+          }
+        }
+        @keyframes floatOrbit {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          25% { transform: translateY(-15px) rotate(90deg); }
+          50% { transform: translateY(0px) rotate(180deg); }
+          75% { transform: translateY(15px) rotate(270deg); }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 40px rgba(0, 102, 255, 0.3), 0 0 80px rgba(0, 102, 255, 0.15); }
+          50% { box-shadow: 0 0 60px rgba(0, 102, 255, 0.5), 0 0 120px rgba(0, 102, 255, 0.3); }
+        }
+        .typing-heading {
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 0;
+          border-right: .15em solid #0084ff;
+          animation: typingWithHiddenCursor 6s steps(40, end) forwards;
+        }
+        .profession-tag {
+          background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 132, 255, 0.05));
+          border: 1.5px solid rgba(0, 102, 255, 0.3);
+          transition: all 0.3s ease;
+        }
+        .profession-tag:hover {
+          background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 132, 255, 0.1));
+          border-color: rgba(0, 102, 255, 0.6);
+          transform: translateY(-4px);
+          box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+        .info-card {
+          background: ${isDark ? 'rgba(15, 23, 42, 0.6)' : 'rgba(255, 255, 255, 0.7)'};
+          backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(0, 102, 255, 0.2);
+          transition: all 0.3s ease;
+        }
+        .info-card:hover {
+          background: ${isDark ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.95)'};
+          border-color: rgba(0, 102, 255, 0.5);
+          transform: translateY(-6px);
+          box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+        }
+        .social-link {
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 132, 255, 0.05));
+          border: 2px solid rgba(0, 102, 255, 0.3);
+          transition: all 0.3s ease;
+        }
+        .social-link:hover {
+          background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 132, 255, 0.1));
+          border-color: rgba(0, 102, 255, 0.6);
+          box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
+        }
+      `}</style>
 
-      {/* --- Top Section: Photo + Info --- */}
-      <div
+      {/* Animated Background Elements */}
+      <motion.div
+        animate={{
+          y: [0, 20, 0],
+          x: [0, 10, 0]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        style={{
+          position: 'absolute',
+          top: '10%',
+          right: '5%',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 102, 255, 0.1), transparent)',
+          filter: 'blur(40px)',
+          zIndex: 0
+        }}
+      />
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          x: [0, -10, 0]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        style={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '5%',
+          width: '350px',
+          height: '350px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 132, 255, 0.08), transparent)',
+          filter: 'blur(60px)',
+          zIndex: 0
+        }}
+      />
+
+      {/* Main Content Container */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-between',
           width: '100%',
-          maxWidth: '1250px',
+          maxWidth: '1300px',
+          gap: '4rem',
           flexWrap: 'wrap',
-          gap: '2rem',
+          position: 'relative',
+          zIndex: 1
         }}
       >
-        {/* --- Left: Animated Glowing Photo --- */}
+        {/* Left: Photo Section (UPDATED from second code) */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          variants={itemVariants}
           style={{
-            position: 'relative',
-            flex: '0 0 380px',
+            flex: '0 1 380px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            position: 'relative'
           }}
         >
+          {/* Rotating Dashed Border */}
           <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
@@ -94,10 +229,12 @@ export default function Home() {
               width: '330px',
               height: '330px',
               borderRadius: '50%',
-              border: '2px dashed var(--accent)',
+              border: '2px dashed #0066FF',
               opacity: 0.3,
             }}
           />
+
+          {/* Floating Glowing Photo */}
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -107,8 +244,9 @@ export default function Home() {
               overflow: 'hidden',
               width: '300px',
               height: '300px',
-              boxShadow: '0 0 45px rgba(0,255,200,0.25)',
-              border: '3px solid var(--accent)',
+              boxShadow:
+                '0 0 45px rgba(0, 102, 255, 0.25), 15px 15px 40px rgba(0, 102, 255, 0.3), -15px -15px 40px rgba(0, 102, 255, 0.15), 0 25px 50px rgba(0, 102, 255, 0.2)',
+              border: '3px solid #0066FF',
               zIndex: 1,
             }}
           >
@@ -128,84 +266,75 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* --- Right: Info Section --- */}
+
+        {/* Right: Info Section */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          variants={itemVariants}
           style={{
             flex: 1,
             minWidth: '360px',
-            maxWidth: '700px',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
+            gap: '1.5rem'
           }}
         >
-          <h1
-            style={{
-              fontSize: '3rem',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: '0.4rem',
-            }}
-          >
-            Hi, I'm{' '}
-            <motion.span
-              animate={{ backgroundPositionX: ['0%', '200%'] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          {/* Main Heading */}
+          <motion.div variants={itemVariants}>
+            <h1
+              className="typing-heading"
               style={{
-                background: 'linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent))',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                backgroundSize: '200%',
+                fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+                fontWeight: 900,
+                lineHeight: 1.1,
+                color: colors.text,
+                marginBottom: '0.5rem'
               }}
             >
-              Abhijeet Kumar
-            </motion.span>
-          </h1>
-
-          {/* --- Typing Animated Text --- */}
-          <p
-            className="typing-effect"
-            style={{
+              Hi, I'm{' '}
+              <span style={{
+                background: 'linear-gradient(135deg, #0066FF, #0084ff)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontWeight: 900
+              }}>
+                Abhijeet Kumar
+              </span>
+            </h1>
+            <p style={{
               fontSize: '1.2rem',
-              color: 'rgba(255,255,255,0.85)',
-              marginTop: '0.4rem',
-              maxWidth: '95%',
-            }}
-          >
-            Machine Learning Engineer | AI Problem Solver | Tech Explorer
-          </p>
+              color: colors.textSecondary,
+              fontWeight: 500,
+              lineHeight: 1.6
+            }}>
+              Machine Learning Engineer | AI Problem Solver | Tech Explorer
+            </p>
+          </motion.div>
 
-          {/* --- Profession Tags --- */}
+          {/* Profession Tags */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
+            variants={itemVariants}
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '0.8rem',
-              marginTop: '1.4rem',
+              gap: '1rem'
             }}
           >
             {professions.map((role, i) => (
               <motion.div
                 key={i}
-                whileHover={{
-                  scale: 1.05,
-                  background: 'linear-gradient(90deg,var(--accent),var(--accent-2))',
-                }}
-                transition={{ type: 'spring', stiffness: 200 }}
+                className="profession-tag"
+                whileHover={{ scale: 1.08 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
                 style={{
-                  border: '1px solid var(--accent)',
-                  padding: '8px 16px',
-                  borderRadius: '20px',
+                  padding: '10px 20px',
+                  borderRadius: '25px',
                   fontSize: '0.95rem',
-                  color: 'rgba(255,255,255,0.85)',
+                  fontWeight: 600,
                   cursor: 'default',
-                  background: 'rgba(255,255,255,0.05)',
+                  color: '#0066FF'
                 }}
               >
                 {role}
@@ -213,69 +342,89 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* --- Info Cards --- */}
+          {/* Info Cards Grid */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
+            variants={itemVariants}
             style={{
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
               gap: '1rem',
-              flexWrap: 'wrap',
-              marginTop: '1.2rem',
+              marginTop: '0.5rem'
             }}
           >
             {[
               { label: '📍 Location', value: 'Rohtas, Bihar, India' },
-              { label: '💼 Expertise', value: 'AI/ML,Problem solving' },
+              { label: '💼 Expertise', value: 'AI/ML, Problem solving' },
               { label: '📧 Contact', value: 'abhijeetmehtaji@gmail.com' },
             ].map((info, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -4, scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 250 }}
+                className="info-card"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  borderRadius: '12px',
-                  padding: '12px 18px',
-                  minWidth: '180px',
-                  textAlign: 'center',
-                  boxShadow: '0 0 10px rgba(0,255,200,0.08)',
+                  borderRadius: '16px',
+                  padding: '16px',
+                  textAlign: 'center'
                 }}
               >
-                <strong style={{ fontSize: '1rem' }}>{info.label}</strong>
-                <p
-                  style={{
-                    fontSize: '0.9rem',
-                    color: 'rgba(255,255,255,0.7)',
-                    marginTop: '4px',
-                  }}
-                >
+                <strong style={{
+                  fontSize: '0.9rem',
+                  color: colors.text,
+                  display: 'block',
+                  marginBottom: '8px'
+                }}>
+                  {info.label}
+                </strong>
+                <p style={{
+                  fontSize: '0.85rem',
+                  color: colors.textSecondary,
+                  margin: 0,
+                  lineHeight: 1.4
+                }}>
                   {info.value}
                 </p>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* --- Bottom Quick Links --- */}
+      {/* Bottom: Social Links & CTA */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
+        variants={itemVariants}
         style={{
           textAlign: 'center',
-          marginTop: '1.2rem',
+          marginTop: '4rem',
+          position: 'relative',
+          zIndex: 1
         }}
       >
-        <h2 style={{ fontSize: '1.4rem', marginBottom: '0.5rem' }}>Connect</h2>
-        <div
+        <motion.h3
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          style={{
+            fontSize: '1.3rem',
+            fontWeight: 700,
+            marginBottom: '1.5rem',
+            background: 'linear-gradient(135deg, #0066FF, #0084ff)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}
+        >
+          Let's Connect
+        </motion.h3>
+
+        <motion.div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: '22px',
+            gap: '1.5rem'
           }}
         >
           {quickLinks.map((item, i) => (
@@ -285,28 +434,30 @@ export default function Home() {
               title={item.title}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.15, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 250 }}
+              className="social-link"
+              whileHover={{ scale: 1.15, rotate: 10 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5 + i * 0.1 }}
             >
               <motion.img
                 src={item.img}
                 alt={item.title}
                 whileHover={{
-                  filter: 'drop-shadow(0 0 15px var(--accent)) brightness(1.2)',
+                  filter: 'drop-shadow(0 0 12px #0066FF)',
+                  scale: 1.1
                 }}
                 style={{
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  filter: 'brightness(0.9)',
-                  transition: 'all 0.3s ease',
+                  width: '35px',
+                  height: '35px',
+                  objectFit: 'contain'
                 }}
               />
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   )
 }
