@@ -1,0 +1,15 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="20" fill="#0A192F"/>
+  <g>
+    <path id="A" d="M30 70 L50 30 L70 70" stroke="#2196F3" stroke-width="8" fill="none">
+      <animate attributeName="stroke" values="#2196F3;#00BFFF;#2196F3" dur="2s" repeatCount="indefinite" />
+    </path>
+    <rect x="45" y="55" width="10" height="15" fill="#2196F3">
+      <animate attributeName="fill" values="#2196F3;#00BFFF;#2196F3" dur="2s" repeatCount="indefinite" />
+    </rect>
+    <path id="J" d="M70 30 Q70 80 50 80" stroke="#00BFFF" stroke-width="8" fill="none">
+      <animate attributeName="stroke" values="#00BFFF;#2196F3;#00BFFF" dur="2s" repeatCount="indefinite" />
+    </path>
+  </g>
+  <text x="50" y="92" text-anchor="middle" font-size="16" fill="#2196F3" font-family="Inter, sans-serif">ABHIJEET</text>
+</svg>

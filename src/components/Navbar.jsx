@@ -4,14 +4,16 @@ import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { Sun, Moon } from "lucide-react";
 
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const links = [
-  { label: "Home", to: "/" },
-  { label: "Projects", to: "/projects" },
-  { label: "Skills", to: "/skills" },
-  { label: "Certificates", to: "/certificates" },
-  { label: "Resume", to: "/resume" },
-  { label: "About me", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: "Home", to: "#home" },
+  { label: "Projects", to: "#projects" },
+  { label: "Skills", to: "#skills" },
+  { label: "Certificates", to: "#certificates" },
+  { label: "Resume", to: "#resume" },
+  { label: "About me", to: "#about" },
+  { label: "Contact", to: "#contact" },
 ];
 
 export default function Navbar() {
@@ -21,13 +23,18 @@ export default function Navbar() {
     <nav
       className="nav"
       style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 999,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0.8rem 2rem",
         borderBottom: `1px solid ${colors.border}`,
-        background: isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.8)",
-        backdropFilter: "blur(10px)",
+        background: isDark ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(12px)",
         color: colors.text,
       }}
     >
@@ -38,18 +45,14 @@ export default function Navbar() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200 }}
-          style={{
-            fontWeight: "bold",
-            fontSize: "1.4rem",
-            color: '#0084ff',
-          }}
+          style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          ABHI
+          <img src={withBase('logos/ABHIJEET_logo.svg')} alt="ABHIJEET Logo" style={{ width: 48, height: 48 }} />
         </motion.div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1 style={{ margin: 0, fontSize: 14, color: colors.text }}>Abhijeet Kumar</h1>
           <div style={{ fontSize: 12, color: colors.textSecondary }}>
-            ML • AI Developer
+            AI ML Developer
           </div>
         </div>
       </div>
@@ -66,63 +69,43 @@ export default function Navbar() {
         }}
       >
         {links.map((l) => (
-          <NavLink
+          <a
             key={l.to}
-            to={l.to}
-            end
-            className={({ isActive }) =>
-              isActive ? "active-link" : "inactive-link"
-            }
+            href={l.to}
+            className="inactive-link"
             style={{
               position: "relative",
               fontSize: "0.95rem",
               textDecoration: "none",
               color: colors.text,
               fontWeight: 500,
+              cursor: "pointer",
+              transition: "color 0.3s",
+            }}
+            onClick={e => {
+              e.preventDefault();
+              const section = document.querySelector(l.to);
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
           >
-            {({ isActive }) => (
-              <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  color: '#0084ff',
-                  textShadow: `0 0 8px #0084ff`,
-                }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <motion.span
-                  animate={{
-                    color: isActive ? '#0084ff' : colors.text,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {l.label}
-                </motion.span>
-                {isActive && (
-                  <motion.div
-                    layoutId="underline"
-                    className="underline"
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      width: "70%",
-                      height: "2px",
-                      marginTop: "4px",
-                      borderRadius: "1px",
-                      backgroundColor: '#0084ff',
-                      boxShadow: `0 0 6px #0084ff`,
-                    }}
-                  />
-                )}
-              </motion.div>
-            )}
-          </NavLink>
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+                color: '#0084ff',
+                textShadow: `0 0 8px #0084ff`,
+              }}
+              transition={{ duration: 0.3 }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <motion.span>{l.label}</motion.span>
+            </motion.div>
+          </a>
         ))}
       </div>
 

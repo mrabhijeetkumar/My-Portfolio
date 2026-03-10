@@ -9,7 +9,7 @@ const PROJECTS = [
   {
     title: 'AI Crop Profit Optimization System  ',
     desc: 'AI-driven crop profit optimization and recommendation system using machine learning, integrating soil parameters, real-time weather data, and live mandi market price analysis.',
-    ss: withBase('AI crop.png'),
+    ss: withBase('gallery/AI_crop.png'),
     tech: ['Python', 'Flask', 'Scikit-learn', 'Pandas', 'NumPy', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'REST APIs', 'Git', 'Render'],
     live: 'https://ai-crop-profit-optimization-system.onrender.com/',
     code: 'https://github.com/mrabhijeetkumar/AI-Crop-Profit-Optimization-System'
@@ -17,7 +17,7 @@ const PROJECTS = [
   {
     title: 'Student Community Platform  ',
     desc: 'Interactive chatbot for personal budget planning and financial management, enabling users to track expenses and set savings goals.',
-    ss: withBase('student community.png'),
+    ss: withBase('gallery/student community.png'),
     tech: ['ReactJS', 'Supabase (Auth, Database, Storage, RLS)', 'JavaScript', 'HTML', 'CSS'],
     live: 'https://studentcommunityplatform.netlify.app/',
     code: 'https://github.com/mrabhijeetkumar/Student-Community-Platform'
@@ -25,7 +25,7 @@ const PROJECTS = [
   {
     title: 'Portfolio Website',
     desc: 'A dynamic, responsive portfolio built using React and Framer Motion that effectively showcases projects, core skills, and achievements with smooth transitions and a clean UI design.',
-    ss: withBase('portfolioBlack.png'),
+    ss: withBase('gallery/portfolioBlack.png'),
     tech: ['React', 'Framer Motion', 'Tailwind CSS', 'HTML'],
     live: '#',
     code: 'https://github.com/mrabhijeetkumar/My-Portfolio'
@@ -33,7 +33,7 @@ const PROJECTS = [
   {
     title: 'Personalised Gift Recomendation Website',
     desc: 'Finding the perfect gift made easy - a Personalised Gift Recommendation system built with HTML, CSS, and JavaScript that turns user preferences into smart gift suggestions.',
-    ss: withBase('Gift.png'),
+    ss: withBase('gallery/Gift.png'),
     tech: ['HTML', 'CSS', 'JS'],
     live: '#',
     code: 'https://github.com/mrabhijeetkumar/Personalised-Gift-Recomendation-Website'

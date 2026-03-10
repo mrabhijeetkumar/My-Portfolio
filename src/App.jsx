@@ -18,17 +18,28 @@ export default function App() {
       <div className="app">
         <AnimatedBackground />
         <Navbar />
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/skills" element={<SkillNetwork />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/about" element={<About />} /> {/* ✅ fixed lowercase */}
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+        <main style={{ flex: 1, paddingTop: 70 }}>
+          <section id="home">
+            <Home />
+          </section>
+          <section id="projects">
+            <Projects />
+          </section>
+          <section id="skills">
+            <SkillNetwork />
+          </section>
+          <section id="certificates">
+            <Certificates />
+          </section>
+          <section id="resume">
+            <Resume />
+          </section>
+          <section id="about">
+            <About />
+          </section>
+          <section id="contact">
+            <Contact />
+          </section>
         </main>
         <footer className="footer">
           © {new Date().getFullYear()} Abhijeet Kumar — Built with React

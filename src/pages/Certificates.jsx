@@ -72,7 +72,6 @@ const CERTS = {
 export default function Certificates() {
   const { isDark, colors } = useTheme();
   const [selectedCert, setSelectedCert] = useState(null);
-
   return (
     <section className="container" style={{ padding: "40px 0" }}>
       <div className="card" style={{ background: colors.cardBg, borderRadius: 16, padding: 30, border: `1px solid ${colors.border}` }}>
