@@ -1,201 +1,85 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
+import React, { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
-const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
-// ✅ Certificates data (added URLs for View button)
-const CERTS = {
-  tech: [
+const CERTIFICATES = [
+    { title: 'Master Gen AI', org: 'Udemy', date: '2025', image: withBase('certs/Master Gen AI.jpg') },
+    { title: 'ChatGPT Prompt Engineering', org: 'Infosys Springboard', date: '2025', image: withBase('certs/ChatGPT prompt engineering.jpg') },
+    { title: 'DSA with C++', org: 'CSE Pathshala', date: '2025', image: withBase('certs/DSA.png') },
+    { title: 'Cloud Computing', org: 'NPTEL', date: '2025', image: withBase('certs/Cloud.png') },
+    { title: 'Responsive Web Design', org: 'FreeCodeCamp', date: '2023', image: withBase('certs/web-design.png') },
+    { title: 'Build Generative AI', org: 'Udemy', date: '2025', image: withBase('certs/Build Generative AI.jpg') },
+    { title: 'Object Oriented Programming', org: 'Neo Colab', date: '2024', image: withBase('certs/OOPS.jpg') },
     {
-      title: "Master Gen AI",
-      org: "Udemy",
-      date: "2025",
-      img: withBase("certs/Master Gen AI.jpg"),
-      link: withBase("certs/Master Gen AI.jpg"),
+        title: 'Fundamentals of Network Communication',
+        org: 'Coursera',
+        date: '2024',
+        image: withBase('certs/Fundamnetal of Network.jpg'),
     },
-    {
-      title: "ChatGPT Prompt Engineering",
-      org: "Infosys | Springboard",
-      date: "2025",
-      img: withBase("certs/ChatGPT prompt engineering.jpg"),
-      link: withBase("certs/ChatGPT prompt engineering.jpg"),
-    },
-    {
-      title: "DSA With C++",
-      org: "CSE Pathshala",
-      date: "2025",
-      img: withBase("certs/DSA.png"),
-      link: withBase("certs/DSA.png"),
-    },
-    {
-      title: "Cloud Computing",
-      org: "NPTEL",
-      date: "2025",
-      img: withBase("certs/Cloud.png"),
-      link: withBase("certs/Cloud.png"),
-    },
-
-    {
-      title: "Responsive Web Design",
-      org: "FreeCodeCamp",
-      date: "2023",
-      img: withBase("certs/Web.png"),
-      link: withBase("certs/Web.png"),
-    },
-    {
-      title: "Build Generative AI",
-      org: "Udemy",
-      date: "2025",
-      img: withBase("certs/Build Generative AI.jpg"),
-      link: withBase("certs/Build Generative AI.jpg"),
-    },
-    {
-      title: "Object Orinted Programing",
-      org: "Neo Colab LPU",
-      date: "2024",
-      img: withBase("certs/OOPS.jpg"),
-      link: withBase("certs/OOPS.jpg"),
-    },
-    {
-      title: "Fundamental of Network and Communication",
-      org: "Coursera",
-      date: "2024",
-      img: withBase("certs/Fundamnetal of Network.jpg"),
-      link: withBase("certs/Fundamnetal of Network.jpg"),
-    },
-
-
-  ],
-};
+]
 
 export default function Certificates() {
-  const { isDark, colors } = useTheme();
-  const [selectedCert, setSelectedCert] = useState(null);
-  return (
-    <section className="container" style={{ padding: "40px 0" }}>
-      <div className="card" style={{ background: colors.cardBg, borderRadius: 16, padding: 30, border: `1px solid ${colors.border}` }}>
-        <motion.h2
-          className="text-4xl font-semibold mb-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          style={{ color: '#0066FF', fontSize: '2.5rem', fontWeight: 800 }}
-        >
-          Certificates
-        </motion.h2>
-        <p className="lead" style={{ color: colors.textSecondary }}>
-          Explore my certifications.
-        </p>
+    const [activeCert, setActiveCert] = useState(null)
 
-        {/* Certificates Grid */}
-        <div
-          className="certs-grid"
-          style={{
-            marginTop: 28,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 20,
-          }}
-        >
-          <AnimatePresence mode="wait">
-            {CERTS.tech.map((c, idx) => (
-              <motion.div
-                key={c.title}
-                className="cert card"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                whileHover={{
-                  scale: 1.03,
-                  boxShadow: colors.shadow,
-                }}
-                style={{
-                  background: colors.bg,
-                  borderRadius: 12,
-                  padding: 16,
-                  color: colors.text,
-                  border: `1px solid ${colors.border}`,
-                }}
-              >
-                <img
-                  src={c.img}
-                  alt={c.title}
-                  style={{
-                    width: "100%",
-                    height: 160,
-                    borderRadius: 10,
-                    objectFit: "cover",
-                    marginBottom: 12,
-                  }}
-                />
-                <strong style={{ fontSize: 16 }}>{c.title}</strong>
-                <div className="muted" style={{ fontSize: 13, color: colors.textSecondary }}>
-                  {c.org} • {c.date}
-                </div>
+    useEffect(() => {
+        const onEsc = (event) => {
+            if (event.key === 'Escape') {
+                setActiveCert(null)
+            }
+        }
 
-                <div style={{ marginTop: 12 }}>
-                  <button
-                    className="btn"
-                    onClick={() => setSelectedCert(c)}
-                    style={{
-                      background: '#0066FF',
-                      border: "none",
-                      color: '#fff',
-                      borderRadius: 6,
-                      padding: "6px 14px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    View
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        window.addEventListener('keydown', onEsc)
+        return () => window.removeEventListener('keydown', onEsc)
+    }, [])
+
+    return (
+        <div className="content-shell" style={{ padding: '1.25rem' }}>
+            <header className="section-header">
+                <p className="section-overline">Validation</p>
+                <h2 className="section-title">Certifications and continuous learning</h2>
+                <p className="section-description">
+                    Structured upskilling across AI, software engineering, cloud, and core computer science concepts.
+                </p>
+            </header>
+
+            <div className="certs-grid">
+                {CERTIFICATES.map((cert, index) => (
+                    <motion.article
+                        key={cert.title}
+                        className="cert-card"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                    >
+                        <img src={cert.image} alt={cert.title} loading="lazy" />
+                        <h3 className="project-title" style={{ marginTop: '0.75rem' }}>
+                            {cert.title}
+                        </h3>
+                        <p className="cert-meta">
+                            {cert.org} • {cert.date}
+                        </p>
+                        <button type="button" className="btn-ghost" style={{ marginTop: '0.8rem' }} onClick={() => setActiveCert(cert)}>
+                            Preview
+                        </button>
+                    </motion.article>
+                ))}
+            </div>
+
+            <AnimatePresence>
+                {activeCert && (
+                    <motion.div
+                        className="lightbox"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setActiveCert(null)}
+                    >
+                        <img src={activeCert.image} alt={activeCert.title} onClick={(event) => event.stopPropagation()} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
-      </div>
-
-      {/* Modal Preview */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            className="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "rgba(0,0,0,0.8)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 1000,
-            }}
-            onClick={() => setSelectedCert(null)}
-          >
-            <motion.img
-              src={selectedCert.img}
-              alt={selectedCert.title}
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              style={{
-                maxWidth: "90%",
-                maxHeight: "85%",
-                borderRadius: 10,
-                boxShadow: "0 0 25px rgba(255,255,255,0.2)",
-              }}
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
+    )
 }

@@ -1,48 +1,48 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import AnimatedBackground from './components/AnimatedBackground'
 import Home from './pages/Home'
+import About from './pages/About'
+import SkillNetwork from './pages/Skills'
 import Projects from './pages/Projects'
 import Certificates from './pages/Certificates'
 import Resume from './pages/Resume'
-import About from './pages/About'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
-import SkillNetwork from './pages/Skills'
 
 export default function App() {
   return (
     <ThemeProvider>
-      <div className="app">
+      <div className="app-shell">
         <AnimatedBackground />
         <Navbar />
-        <main style={{ flex: 1, paddingTop: 70 }}>
-          <section id="home">
+        <main className="page-main" id="top">
+          <section id="home" className="section-block section-home">
             <Home />
           </section>
-          <section id="projects">
-            <Projects />
-          </section>
-          <section id="skills">
-            <SkillNetwork />
-          </section>
-          <section id="certificates">
-            <Certificates />
-          </section>
-          <section id="resume">
-            <Resume />
-          </section>
-          <section id="about">
+          <section id="about" className="section-block">
             <About />
           </section>
-          <section id="contact">
+          <section id="skills" className="section-block">
+            <SkillNetwork />
+          </section>
+          <section id="projects" className="section-block">
+            <Projects />
+          </section>
+          <section id="certificates" className="section-block">
+            <Certificates />
+          </section>
+          <section id="resume" className="section-block">
+            <Resume />
+          </section>
+          <section id="contact" className="section-block section-contact">
             <Contact />
           </section>
         </main>
-        <footer className="footer">
-          © {new Date().getFullYear()} Abhijeet Kumar — Built with React
+        <footer className="site-footer">
+          <p>© {new Date().getFullYear()} Abhijeet Kumar</p>
+          <p>Designed and developed with React, motion, and a lot of curiosity.</p>
         </footer>
       </div>
     </ThemeProvider>

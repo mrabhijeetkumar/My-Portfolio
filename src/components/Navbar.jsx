@@ -1,136 +1,116 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
-import { Sun, Moon } from "lucide-react";
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Menu, Moon, Sun, X } from 'lucide-react'
+import { useTheme } from '../context/ThemeContext'
 
-const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
 const links = [
-  { label: "Home", to: "#home" },
-  { label: "Projects", to: "#projects" },
-  { label: "Skills", to: "#skills" },
-  { label: "Certificates", to: "#certificates" },
-  { label: "Resume", to: "#resume" },
-  { label: "About me", to: "#about" },
-  { label: "Contact", to: "#contact" },
-];
+  { label: 'Home', to: 'home' },
+  { label: 'About', to: 'about' },
+  { label: 'Skills', to: 'skills' },
+  { label: 'Projects', to: 'projects' },
+  { label: 'Certificates', to: 'certificates' },
+  { label: 'Resume', to: 'resume' },
+  { label: 'Contact', to: 'contact' },
+]
 
 export default function Navbar() {
-  const { isDark, toggleTheme, colors } = useTheme();
+  const { isDark, toggleTheme, motionAllowed } = useTheme()
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.getElementById(link.to))
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      {
+        rootMargin: '-40% 0px -50% 0px',
+        threshold: 0.01,
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
+  const handleNavigate = (sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setIsMobileOpen(false)
+    }
+  }
 
   return (
-    <nav
-      className="nav"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 999,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "0.8rem 2rem",
-        borderBottom: `1px solid ${colors.border}`,
-        background: isDark ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.9)",
-        backdropFilter: "blur(12px)",
-        color: colors.text,
-      }}
-    >
-      {/* --- Left Logo + Name --- */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <motion.div
-          className="logo"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    <header className="site-header">
+      <nav className="navbar">
+        <button
+          type="button"
+          className="brand-wrap"
+          onClick={() => handleNavigate('home')}
+          aria-label="Go to home section"
         >
-          <img src={withBase('logos/ABHIJEET_logo.svg')} alt="ABHIJEET Logo" style={{ width: 48, height: 48 }} />
-        </motion.div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <h1 style={{ margin: 0, fontSize: 14, color: colors.text }}>Abhijeet Kumar</h1>
-          <div style={{ fontSize: 12, color: colors.textSecondary }}>
-            AI ML Developer
-          </div>
+          <span className="brand-logo-wrap">
+            <img src={withBase('logos/ABHIJEET_logo.svg')} alt="Abhijeet logo" className="brand-logo" />
+          </span>
+          <span className="brand-meta">
+            <strong>Abhijeet Kumar</strong>
+            <small>Machine Learning Engineer</small>
+          </span>
+        </button>
+
+        <div className={`nav-links-wrap ${isMobileOpen ? 'open' : ''}`}>
+          {links.map((link) => {
+            const isActive = activeSection === link.to
+
+            return (
+              <button
+                key={link.to}
+                type="button"
+                className={`nav-link ${isActive ? 'active' : ''}`}
+                onClick={() => handleNavigate(link.to)}
+              >
+                {motionAllowed ? (
+                  <motion.span whileHover={{ y: -1 }}>{link.label}</motion.span>
+                ) : (
+                  <span>{link.label}</span>
+                )}
+              </button>
+            )
+          })}
         </div>
-      </div>
 
-      {/* --- Center Navigation Links --- */}
-      <div
-        className="nav-links"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "1.8rem",
-          alignItems: "center",
-          flexGrow: 1,
-        }}
-      >
-        {links.map((l) => (
-          <a
-            key={l.to}
-            href={l.to}
-            className="inactive-link"
-            style={{
-              position: "relative",
-              fontSize: "0.95rem",
-              textDecoration: "none",
-              color: colors.text,
-              fontWeight: 500,
-              cursor: "pointer",
-              transition: "color 0.3s",
-            }}
-            onClick={e => {
-              e.preventDefault();
-              const section = document.querySelector(l.to);
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+        <div className="nav-actions">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="theme-toggle"
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                color: '#0084ff',
-                textShadow: `0 0 8px #0084ff`,
-              }}
-              transition={{ duration: 0.3 }}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <motion.span>{l.label}</motion.span>
-            </motion.div>
-          </a>
-        ))}
-      </div>
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
-      {/* --- Right Theme Toggle --- */}
-      <motion.button
-        onClick={toggleTheme}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        style={{
-          background: colors.cardBg,
-          border: `1px solid ${colors.border}`,
-          borderRadius: "50%",
-          width: "40px",
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          color: colors.accent,
-          transition: "all 0.3s ease",
-        }}
-        title={isDark ? "Light Mode" : "Dark Mode"}
-      >
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </motion.button>
-    </nav>
-  );
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Toggle menu"
+            onClick={() => setIsMobileOpen((open) => !open)}
+          >
+            {isMobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+      </nav>
+    </header>
+  )
 }
