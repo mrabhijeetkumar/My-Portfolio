@@ -57,6 +57,7 @@ export default function Projects() {
                         className="project-card"
                         initial={{ opacity: 0, y: 18 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        whileHover={{ y: -5, transition: { duration: 0.2 } }}
                         viewport={{ once: true, margin: '-80px' }}
                         transition={{ duration: 0.45, delay: index * 0.05 }}
                     >

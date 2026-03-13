@@ -232,11 +232,18 @@ export default function Home() {
             ].map((info, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -4, scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 250 }}
+                whileHover={{
+                  y: -3,
+                  scale: 1.03,
+                  borderColor: 'color-mix(in srgb, var(--accent) 58%, var(--border))',
+                  boxShadow: '0 14px 24px color-mix(in srgb, var(--accent) 18%, transparent)',
+                  background: 'color-mix(in srgb, var(--surface) 94%, transparent)',
+                }}
+                transition={{ type: 'spring', stiffness: 220, damping: 18 }}
                 style={{
                   background: 'color-mix(in srgb, var(--surface) 86%, transparent)',
                   borderRadius: '12px',
+                  border: '1px solid var(--border)',
                   padding: '12px 18px',
                   minWidth: '180px',
                   textAlign: 'center',
@@ -285,14 +292,14 @@ export default function Home() {
               title={item.title}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.15, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 250 }}
+              whileHover={{ y: -3, scale: 1.08 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 17 }}
             >
               <motion.img
                 src={item.img}
                 alt={item.title}
                 whileHover={{
-                  filter: 'drop-shadow(0 0 15px var(--accent)) brightness(1.2)',
+                  filter: 'drop-shadow(0 0 11px var(--accent)) brightness(1.14)',
                 }}
                 style={{
                   width: '50px',

@@ -21,6 +21,11 @@ const AboutMe = () => {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                whileHover={{
+                    y: -3,
+                    borderColor: "color-mix(in srgb, var(--accent) 58%, var(--border))",
+                    boxShadow: "var(--shadow-hard)",
+                }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 style={{
                     width: "100%",
@@ -34,6 +39,7 @@ const AboutMe = () => {
                     boxShadow: "var(--shadow-soft)",
                     backdropFilter: "blur(10px)",
                     border: "1px solid var(--border)",
+                    transition: "border-color 0.22s ease, box-shadow 0.22s ease",
                 }}
             >
                 {/* --- Header --- */}
