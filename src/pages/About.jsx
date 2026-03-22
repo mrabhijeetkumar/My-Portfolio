@@ -1,82 +1,64 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react'
+import { motion } from 'framer-motion'
 
-const AboutMe = () => {
-    return (
-        <div
-            style={{
-                minHeight: "100vh",
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                background:
-                    "radial-gradient(circle at 22% 18%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%), linear-gradient(150deg, color-mix(in srgb, var(--surface) 30%, transparent), transparent)",
-                color: "var(--text)",
-                padding: "3rem 1rem",
-            }}
+const strengths = [
+  {
+    title: 'Problem-to-Solution Ownership',
+    text: 'I translate vague business problems into structured ML workflows, from data preparation and model design to deployment-ready outputs.',
+  },
+  {
+    title: 'Balanced Engineering Mindset',
+    text: 'I care about both algorithm quality and product usability, so the final solution is technically correct and easy for users to trust.',
+  },
+  {
+    title: 'Continuous Improvement',
+    text: 'I actively learn from new AI tools, research trends, and project retrospectives to improve speed, reliability, and impact in each build.',
+  },
+]
+
+export default function AboutMe() {
+  return (
+    <div className="content-shell about-shell">
+      <header className="section-header">
+        <p className="section-overline">Professional Summary</p>
+        <h2 className="section-title">Why I can add value from day one</h2>
+        <p className="section-description">
+          I am a Computer Science learner and ML-focused builder with experience creating intelligent applications for real use cases,
+          including prediction systems, recommendation engines, and responsive web products.
+        </p>
+      </header>
+
+      <div className="about-grid">
+        <motion.article
+          className="about-main-card"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
         >
-            {/* --- About Me Section --- */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{
-                    y: -3,
-                    borderColor: "color-mix(in srgb, var(--accent) 58%, var(--border))",
-                    boxShadow: "var(--shadow-hard)",
-                }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                style={{
-                    width: "100%",
-                    maxWidth: "1100px",
-                    textAlign: "left",
-                    marginTop: "1rem",
-                    lineHeight: 1.8,
-                    background: "color-mix(in srgb, var(--surface) 90%, transparent)",
-                    padding: "3rem 3.5rem",
-                    borderRadius: "18px",
-                    boxShadow: "var(--shadow-soft)",
-                    backdropFilter: "blur(10px)",
-                    border: "1px solid var(--border)",
-                    transition: "border-color 0.22s ease, box-shadow 0.22s ease",
-                }}
+          <h3>What recruiters can expect</h3>
+          <ul>
+            <li>Strong fundamentals in Python, data structures, model development, and API-first backend workflows.</li>
+            <li>Hands-on React front-end experience to present ML outcomes in clear and interactive product interfaces.</li>
+            <li>Fast learner with a consistent habit of shipping complete projects, not just isolated prototypes.</li>
+          </ul>
+        </motion.article>
+
+        <div className="about-strengths-list">
+          {strengths.map((item, index) => (
+            <motion.article
+              key={item.title}
+              className="about-strength-card"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-70px' }}
+              transition={{ delay: index * 0.06 }}
             >
-                {/* --- Header --- */}
-                <h2
-                    style={{
-                        fontSize: "1.9rem",
-                        marginBottom: "1.2rem",
-                        background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
-                        WebkitBackgroundClip: "text",
-                        color: "transparent",
-                    }}
-                >
-                    About Me
-                </h2>
-
-                {/* --- Description --- */}
-                <p
-                    style={{
-                        fontSize: "1.1rem",
-                        color: "var(--text)",
-                        marginBottom: "1rem",
-                    }}
-                >
-                    I'm Abhijeet Kumar, a Machine Learning enthusiast and Computer Science student focused on building intelligent,
-                    data-driven applications. I enjoy working with machine learning models, data analysis, and full-stack
-                    technologies to create solutions that solve real-world problems. My goal is to design practical AI systems
-                    that combine strong algorithms with clean, user-friendly interfaces while continuously exploring new tools
-                    and technologies in the AI ecosystem.
-                </p>
-
-                <p style={{ marginTop: "1.2rem", color: "var(--text-muted)" }}>
-                    Detailed academic background is presented in the Resume section to keep
-                    this About page focused on profile and mindset.
-                </p>
-            </motion.div>
+              <h4>{item.title}</h4>
+              <p>{item.text}</p>
+            </motion.article>
+          ))}
         </div>
-    );
-};
-
-export default AboutMe;
+      </div>
+    </div>
+  )
+}

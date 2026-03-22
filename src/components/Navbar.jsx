@@ -8,8 +8,8 @@ const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 const links = [
   { label: 'Home', to: 'home' },
   { label: 'About', to: 'about' },
-  { label: 'Skills', to: 'skills' },
   { label: 'Projects', to: 'projects' },
+  { label: 'Skills', to: 'skills' },
   { label: 'Certificates', to: 'certificates' },
   { label: 'Resume', to: 'resume' },
   { label: 'Contact', to: 'contact' },
