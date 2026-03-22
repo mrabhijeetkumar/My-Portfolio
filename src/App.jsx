@@ -24,11 +24,11 @@ export default function App() {
           <section id="about" className="section-block">
             <About />
           </section>
-          <section id="projects" className="section-block">
-            <Projects />
-          </section>
           <section id="skills" className="section-block">
             <SkillNetwork />
+          </section>
+          <section id="projects" className="section-block">
+            <Projects />
           </section>
           <section id="certificates" className="section-block">
             <Certificates />
