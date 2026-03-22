@@ -3,317 +3,117 @@ import { motion } from 'framer-motion'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
-// 🖼️ Public assets resolved against the GitHub Pages base path
 const photo = withBase('profile.png')
-const githubLogo = withBase('github.png')
-const linkedinLogo = withBase('linkedin.png')
-const gmailLogo = withBase('gmail.png')
-const whatsappLogo = withBase('whatsapp.png')
-const instagramLogo = withBase('insta.png')
+const resumeFile = withBase('resume.pdf')
+
+const quickLinks = [
+  { img: withBase('github.png'), title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
+  { img: withBase('linkedin.png'), title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
+  { img: withBase('gmail.png'), title: 'Email', link: 'mailto:abhijeetmehtaji@gmail.com' },
+  { img: withBase('whatsapp.png'), title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
+  { img: withBase('insta.png'), title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
+]
+
+const recruiterHighlights = [
+  { label: 'Focus', value: 'AI/ML Products & Automation' },
+  { label: 'Tech Stack', value: 'Python, React, Flask, SQL' },
+  { label: 'Location', value: 'Rohtas, Bihar, India' },
+  { label: 'Open To', value: 'Internships & Full-time roles' },
+]
+
+const impactStats = [
+  { value: '4+', label: 'Production-ready projects' },
+  { value: '10+', label: 'Technical certifications' },
+  { value: '100%', label: 'Problem-solving mindset' },
+]
 
 export default function Home() {
-  const professions = [
-    'Machine Learning Engineer',
-    "AI Enthusiast",
-    "Data Explorer"
-  ]
-
-  const quickLinks = [
-    { img: githubLogo, title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
-    { img: linkedinLogo, title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
-    { img: gmailLogo, title: 'Email', link: 'mailto:abhijeetmehtaji@gmail.com' },
-    { img: whatsappLogo, title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
-    { img: instagramLogo, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
-  ]
-
   return (
-    <section
-      style={{
-        minHeight: '90vh',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        gap: '3rem',
-        alignItems: 'center',
-        padding: '3rem 2rem 1rem',
-        background: 'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
-        color: 'var(--text)',
-      }}
-    >
-      <style>
-        {`
-          @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-          }
-          @keyframes blink {
-            50% { border-color: transparent; }
-          }
-          .typing-effect {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid var(--accent);
-            width: 0;
-            animation: typing 3.5s steps(40, end) forwards, blink .8s infinite;
-          }
-        `}
-      </style>
-
-      {/* --- Top Section: Photo + Info --- */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          maxWidth: '1250px',
-          flexWrap: 'wrap',
-          gap: '2rem',
-        }}
-      >
-        {/* --- Left: Animated Glowing Photo --- */}
+    <section className="hero-shell">
+      <div className="hero-layout">
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
+          className="hero-photo-wrap"
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          style={{
-            position: 'relative',
-            flex: '0 0 380px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          transition={{ duration: 0.8 }}
         >
           <motion.div
+            className="hero-photo-orbit"
             animate={{ rotate: [0, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-            style={{
-              position: 'absolute',
-              width: '330px',
-              height: '330px',
-              borderRadius: '50%',
-              border: '2px dashed var(--accent)',
-              opacity: 0.3,
-            }}
+            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
           />
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'relative',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              width: '300px',
-              height: '300px',
-              boxShadow: '0 0 45px rgba(0,255,200,0.25)',
-              border: '3px solid var(--accent)',
-              zIndex: 1,
-            }}
-          >
-            <motion.img
-              src={photo}
-              alt="Abhijeet Kumar"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1 }}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '50%',
-              }}
-            />
-          </motion.div>
+          <motion.img
+            src={photo}
+            alt="Abhijeet Kumar"
+            className="hero-photo"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          />
         </motion.div>
 
-        {/* --- Right: Info Section --- */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          style={{
-            flex: 1,
-            minWidth: '360px',
-            maxWidth: '700px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <h1
-            style={{
-              fontSize: '3rem',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: '0.4rem',
-            }}
-          >
-            Hi, I'm{' '}
-            <motion.span
-              animate={{ backgroundPositionX: ['0%', '200%'] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-              style={{
-                background: 'linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent))',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                backgroundSize: '200%',
-              }}
-            >
-              Abhijeet Kumar
-            </motion.span>
+          <p className="hero-tag">Recruiter-ready Digital Portfolio</p>
+          <h1 className="hero-title">
+            Building reliable AI solutions that are practical, measurable, and user-friendly.
           </h1>
-
-          {/* --- Typing Animated Text --- */}
-          <p
-            className="typing-effect"
-            style={{
-              fontSize: '1.2rem',
-              color: 'var(--text-muted)',
-              marginTop: '0.4rem',
-              maxWidth: '95%',
-            }}
-          >
-            Machine Learning Engineer | AI Problem Solver | Tech Explorer
+          <p className="hero-subtitle">
+            I am <strong>Abhijeet Kumar</strong> — a Machine Learning Engineer who combines data intelligence with clean product
+            thinking. This portfolio is organized to quickly show my value, projects, skills, and execution quality.
           </p>
 
-          {/* --- Profession Tags --- */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.8rem',
-              marginTop: '1.4rem',
-            }}
-          >
-            {professions.map((role, i) => (
-              <motion.div
-                key={i}
-                whileHover={{
-                  scale: 1.05,
-                  background: 'linear-gradient(90deg,var(--accent),var(--accent-2))',
-                }}
-                transition={{ type: 'spring', stiffness: 200 }}
-                style={{
-                  border: '1px solid var(--accent)',
-                  padding: '8px 16px',
-                  borderRadius: '20px',
-                  fontSize: '0.95rem',
-                  color: 'var(--text)',
-                  cursor: 'default',
-                  background: 'color-mix(in srgb, var(--surface) 86%, transparent)',
-                }}
-              >
-                {role}
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="hero-cta-row">
+            <a href="#projects" className="btn">
+              View Projects
+            </a>
+            <a href={resumeFile} className="btn-ghost" target="_blank" rel="noreferrer">
+              Download Resume
+            </a>
+            <a href="#contact" className="btn-ghost">
+              Hire Me
+            </a>
+          </div>
 
-          {/* --- Info Cards --- */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              flexWrap: 'wrap',
-              marginTop: '1.2rem',
-            }}
-          >
-            {[
-              { label: '📍 Location', value: 'Rohtas, Bihar, India' },
-              { label: '💼 Expertise', value: 'AI/ML,Problem solving' },
-              { label: '📧 Contact', value: 'abhijeetmehtaji@gmail.com' },
-            ].map((info, i) => (
-              <motion.div
-                key={i}
-                whileHover={{
-                  y: -3,
-                  scale: 1.03,
-                  borderColor: 'color-mix(in srgb, var(--accent) 58%, var(--border))',
-                  boxShadow: '0 14px 24px color-mix(in srgb, var(--accent) 18%, transparent)',
-                  background: 'color-mix(in srgb, var(--surface) 94%, transparent)',
-                }}
-                transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-                style={{
-                  background: 'color-mix(in srgb, var(--surface) 86%, transparent)',
-                  borderRadius: '12px',
-                  border: '1px solid var(--border)',
-                  padding: '12px 18px',
-                  minWidth: '180px',
-                  textAlign: 'center',
-                  boxShadow: '0 0 10px rgba(0,255,200,0.08)',
-                }}
-              >
-                <strong style={{ fontSize: '1rem' }}>{info.label}</strong>
-                <p
-                  style={{
-                    fontSize: '0.9rem',
-                    color: 'var(--text-muted)',
-                    marginTop: '4px',
-                  }}
-                >
-                  {info.value}
-                </p>
-              </motion.div>
+          <div className="hero-highlights-grid">
+            {recruiterHighlights.map((item) => (
+              <article key={item.label} className="hero-highlight-card">
+                <p>{item.label}</p>
+                <h3>{item.value}</h3>
+              </article>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
-      {/* --- Bottom Quick Links --- */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
-        style={{
-          textAlign: 'center',
-          marginTop: '1.2rem',
-        }}
-      >
-        <h2 style={{ fontSize: '1.4rem', marginBottom: '0.5rem' }}>Connect</h2>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '22px',
-          }}
-        >
-          {quickLinks.map((item, i) => (
-            <motion.a
-              key={i}
-              href={item.link}
-              title={item.title}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -3, scale: 1.08 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 17 }}
-            >
-              <motion.img
-                src={item.img}
-                alt={item.title}
-                whileHover={{
-                  filter: 'drop-shadow(0 0 11px var(--accent)) brightness(1.14)',
-                }}
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  filter: 'brightness(0.9)',
-                  transition: 'all 0.3s ease',
-                }}
-              />
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
+      <div className="hero-stats-grid">
+        {impactStats.map((item) => (
+          <article key={item.label} className="hero-stat-card">
+            <h3>{item.value}</h3>
+            <p>{item.label}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="hero-social-row">
+        {quickLinks.map((item) => (
+          <motion.a
+            key={item.title}
+            href={item.link}
+            title={item.title}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -3, scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            className="hero-social-link"
+          >
+            <img src={item.img} alt={item.title} />
+          </motion.a>
+        ))}
+      </div>
     </section>
   )
 }
