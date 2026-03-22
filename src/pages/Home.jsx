@@ -181,9 +181,9 @@ export default function Home() {
               fontWeight: 800,
               lineHeight: 1.13,
               marginBottom: '0.2rem',
-              color: '#fff',
+              color: 'var(--text)',
               letterSpacing: '-1px',
-              background: 'linear-gradient(90deg, #fff 60%, var(--accent) 100%)',
+              background: 'linear-gradient(90deg, var(--text) 60%, var(--accent) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block',
@@ -206,7 +206,6 @@ export default function Home() {
             <span className="typing-effect">{displayText}</span>
           </h2>
           <p
-            className="typing-effect"
             style={{
               fontSize: '1.13rem',
               color: 'var(--text-muted)',
