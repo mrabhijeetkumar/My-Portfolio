@@ -1,96 +1,59 @@
-import React from "react";
-const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
+import React from 'react'
 
-function About() {
-    return (
-        <section
-            style={{
-                minHeight: "80vh",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "none",
-                padding: "3.5rem 1rem 2.5rem 1rem",
-            }}
-        >
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    maxWidth: "1100px",
-                    gap: "3.5rem",
-                    flexWrap: "wrap",
-                }}
-            >
-                {/* Left: Profile Image in Bordered Box */}
-                <div className="profile-image-container">
-                    <img
-                        src={withBase('profile.png')}
-                        alt="Profile"
-                        className="about-profile-img"
-                    />
-                </div>
-                {/* Right: About Content */}
-                <div
-                    style={{
-                        flex: 1,
-                        minWidth: "320px",
-                        maxWidth: "540px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "center",
-                    }}
-                >
-                    <h2
-                        style={{
-                            fontSize: "2.3rem",
-                            fontWeight: 900,
-                            marginBottom: "0.3rem",
-                            color: "#fff",
-                            letterSpacing: "-0.5px",
-                        }}
-                    >
-                        About <span style={{ color: "var(--accent)", fontWeight: 900 }}>Me</span>
-                    </h2>
-                    <h3
-                        style={{
-                            fontSize: "1.25rem",
-                            fontWeight: 700,
-                            color: "var(--accent)",
-                            marginBottom: "1.1rem",
-                            letterSpacing: "-0.2px",
-                        }}
-                    >
-                        Frontend Developer & Machine Learning Engineer
-                    </h3>
-                    <p
-                        style={{
-                            fontSize: "1.08rem",
-                            color: "var(--text)",
-                            marginBottom: "1.3rem",
-                            lineHeight: 1.7,
-                            fontWeight: 500,
-                            textShadow: "0 2px 16px rgba(0,0,0,0.10)",
-                        }}
-                    >
-                        I am a Computer Science student focused on building real-world web applications and AI-powered systems that solve practical problems. I specialize in full-stack development and machine learning, creating scalable, efficient, and user-focused solutions. From designing responsive interfaces to developing intelligent backend logic, I aim to deliver products that are both impactful and performance-driven. I am continuously learning, building, and looking for opportunities to contribute to real-world projects.
-                    </p>
-                    <a
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="about-resume-btn"
-                    >
-                        Read more
-                    </a>
-                </div>
-            </div>
-        </section>
-    )
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
+
+export default function About() {
+  return (
+    <div className="content-shell" style={{ padding: '1.25rem' }}>
+      <header className="section-header">
+        <p className="section-overline">About</p>
+        <h2 className="section-title">Building products with clean UX and practical AI</h2>
+        <p className="section-description">
+          I enjoy creating fast, user-focused apps and blending them with data-driven intelligence.
+        </p>
+      </header>
+
+      <div className="about-grid">
+        <article className="about-card">
+          <div className="about-copy">
+            <p>
+              I am a Computer Science student who loves shipping end-to-end solutions—from responsive frontends to
+              scalable backends and machine learning pipelines.
+            </p>
+            <p>
+              My work focuses on usability, performance, and reliability. I regularly build projects in React, Python,
+              Flask, and modern web tooling while continuously improving my foundations in DSA and system design.
+            </p>
+            <p>
+              I am currently looking for opportunities where I can contribute to meaningful products and keep learning
+              from strong engineering teams.
+            </p>
+          </div>
+          <a href={withBase('resume.pdf')} className="about-resume-btn" target="_blank" rel="noreferrer">
+            Read Resume
+          </a>
+        </article>
+
+        <article className="about-card" style={{ display: 'grid', placeItems: 'center', gap: '1rem' }}>
+          <div className="profile-image-container" style={{ margin: 0 }}>
+            <img src={withBase('profile.png')} alt="Abhijeet Kumar" className="about-profile-img" />
+          </div>
+          <ul className="timeline" style={{ width: '100%' }}>
+            <li>
+              <strong>B.Tech CSE (Machine Learning)</strong>
+              <span>Lovely Professional University • 2023 – 2027</span>
+            </li>
+            <li>
+              <strong>Core Focus</strong>
+              <span>React, Python, Machine Learning, Flask, SQL</span>
+            </li>
+            <li>
+              <strong>Goal</strong>
+              <span>Build products that are useful, scalable, and easy to use</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  )
 }
-export default About;
