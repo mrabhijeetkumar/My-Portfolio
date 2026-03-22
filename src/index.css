@@ -1,24 +1,24 @@
 /* About section profile image container */
 .profile-image-container {
-  background: rgba(16, 32, 56, 0.92);
-  border-radius: 22px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-radius: 999px;
   border: 3px solid var(--accent);
-  padding: 2.2rem 2.2rem 1.2rem 2.2rem;
+  padding: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 270px;
-  min-height: 340px;
-  box-shadow: 0 4px 32px 0 rgba(0, 60, 120, 0.10);
+  width: 280px;
+  height: 280px;
+  box-shadow: 0 4px 32px 0 color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 /* About section profile image */
 .about-profile-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 18px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 2px 18px 0 rgba(0, 40, 80, 0.10);
+  box-shadow: 0 2px 18px 0 color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 /* About section resume button */
@@ -261,9 +261,9 @@ h4 {
 
 .content-shell,
 .section-block {
-  background: rgba(16, 32, 56, 0.82);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
   border-radius: 18px;
-  box-shadow: 0 2px 8px 0 rgba(0, 40, 80, 0.06);
+  box-shadow: 0 2px 8px 0 color-mix(in srgb, var(--accent) 8%, transparent);
   border: none;
   backdrop-filter: none;
   transition: box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);

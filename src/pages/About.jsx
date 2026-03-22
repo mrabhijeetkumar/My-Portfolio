@@ -51,7 +51,7 @@ function About() {
                             fontSize: "2.3rem",
                             fontWeight: 900,
                             marginBottom: "0.3rem",
-                            color: "#fff",
+                            color: "var(--text)",
                             letterSpacing: "-0.5px",
                         }}
                     >
