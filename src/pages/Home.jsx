@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
@@ -12,12 +12,6 @@ const whatsappLogo = withBase('whatsapp.png')
 const instagramLogo = withBase('insta.png')
 
 export default function Home() {
-  const professions = [
-    'Machine Learning Engineer',
-    "AI Enthusiast",
-    "Data Explorer"
-  ]
-
   const quickLinks = [
     { img: githubLogo, title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
     { img: linkedinLogo, title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
@@ -25,6 +19,40 @@ export default function Home() {
     { img: whatsappLogo, title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
     { img: instagramLogo, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
   ]
+
+  // Animated typewriter effect for headline
+  const typeStrings = [
+    'Machine Learning Engineer',
+    'Full Stack Developer & Machine Learning Engineer',
+  ];
+  const [displayText, setDisplayText] = useState('');
+  const [typeIndex, setTypeIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let typingTimeout;
+    const currentString = typeStrings[typeIndex];
+    if (!isDeleting && charIndex < currentString.length) {
+      typingTimeout = setTimeout(() => {
+        setDisplayText(currentString.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      }, 70);
+    } else if (isDeleting && charIndex > 0) {
+      typingTimeout = setTimeout(() => {
+        setDisplayText(currentString.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+      }, 40);
+    } else if (!isDeleting && charIndex === currentString.length) {
+      typingTimeout = setTimeout(() => setIsDeleting(true), 1200);
+    } else if (isDeleting && charIndex === 0) {
+      typingTimeout = setTimeout(() => {
+        setIsDeleting(false);
+        setTypeIndex((typeIndex + 1) % typeStrings.length);
+      }, 500);
+    }
+    return () => clearTimeout(typingTimeout);
+  }, [charIndex, isDeleting, typeIndex]);
 
   return (
     <section
@@ -55,8 +83,13 @@ export default function Home() {
             overflow: hidden;
             white-space: nowrap;
             border-right: .15em solid var(--accent);
-            width: 0;
-            animation: typing 3.5s steps(40, end) forwards, blink .8s infinite;
+            min-height: 1.2em;
+            font-family: inherit;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.01em;
+            animation: blink .8s infinite;
           }
         `}
       </style>
@@ -144,125 +177,70 @@ export default function Home() {
         >
           <h1
             style={{
-              fontSize: '3rem',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: '0.4rem',
+              fontSize: '3.2rem',
+              fontWeight: 800,
+              lineHeight: 1.13,
+              marginBottom: '0.2rem',
+              color: '#fff',
+              letterSpacing: '-1px',
+              background: 'linear-gradient(90deg, #fff 60%, var(--accent) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block',
             }}
           >
-            Hi, I'm{' '}
-            <motion.span
-              animate={{ backgroundPositionX: ['0%', '200%'] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-              style={{
-                background: 'linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent))',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                backgroundSize: '200%',
-              }}
-            >
-              Abhijeet Kumar
-            </motion.span>
+            Hi, I'm<br />
+            <span style={{ color: 'var(--accent)', fontWeight: 900, fontSize: '3.3rem', WebkitTextFillColor: 'var(--accent)', background: 'none' }}>Abhijeet Kumar</span>
           </h1>
-
-          {/* --- Typing Animated Text --- */}
+          <h2
+            style={{
+              fontSize: '1.45rem',
+              fontWeight: 700,
+              color: 'var(--accent)',
+              margin: '0.2rem 0 1.1rem 0',
+              letterSpacing: '-0.2px',
+              textShadow: '0 2px 18px rgba(0,226,255,0.10)',
+              minHeight: '2.2em',
+            }}
+          >
+            <span className="typing-effect">{displayText}</span>
+          </h2>
           <p
             className="typing-effect"
             style={{
-              fontSize: '1.2rem',
+              fontSize: '1.13rem',
               color: 'var(--text-muted)',
-              marginTop: '0.4rem',
+              margin: '0.2rem 0 1.2rem 0',
               maxWidth: '95%',
+              fontWeight: 500,
+              textShadow: '0 2px 16px rgba(0,0,0,0.10)',
             }}
           >
-            Machine Learning Engineer | AI Problem Solver | Tech Explorer
+            I am a Computer Science student focused on building real-world web applications and AI-powered systems that solve practical problems. I specialize in full-stack development and machine learning, creating scalable, efficient, and user-focused solutions. From designing responsive interfaces to developing intelligent backend logic, I aim to deliver products that are both impactful and performance-driven. I am continuously learning, building, and looking for opportunities to contribute to real-world projects.
           </p>
-
-          {/* --- Profession Tags --- */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.8rem',
-              marginTop: '1.4rem',
-            }}
-          >
-            {professions.map((role, i) => (
-              <motion.div
-                key={i}
-                whileHover={{
-                  scale: 1.05,
-                  background: 'linear-gradient(90deg,var(--accent),var(--accent-2))',
-                }}
-                transition={{ type: 'spring', stiffness: 200 }}
-                style={{
-                  border: '1px solid var(--accent)',
-                  padding: '8px 16px',
-                  borderRadius: '20px',
-                  fontSize: '0.95rem',
-                  color: 'var(--text)',
-                  cursor: 'default',
-                  background: 'color-mix(in srgb, var(--surface) 86%, transparent)',
-                }}
-              >
-                {role}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* --- Info Cards --- */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              flexWrap: 'wrap',
-              marginTop: '1.2rem',
-            }}
-          >
-            {[
-              { label: '📍 Location', value: 'Rohtas, Bihar, India' },
-              { label: '💼 Expertise', value: 'AI/ML,Problem solving' },
-              { label: '📧 Contact', value: 'abhijeetmehtaji@gmail.com' },
-            ].map((info, i) => (
-              <motion.div
-                key={i}
-                whileHover={{
-                  y: -3,
-                  scale: 1.03,
-                  borderColor: 'color-mix(in srgb, var(--accent) 58%, var(--border))',
-                  boxShadow: '0 14px 24px color-mix(in srgb, var(--accent) 18%, transparent)',
-                  background: 'color-mix(in srgb, var(--surface) 94%, transparent)',
-                }}
-                transition={{ type: 'spring', stiffness: 220, damping: 18 }}
-                style={{
-                  background: 'color-mix(in srgb, var(--surface) 86%, transparent)',
-                  borderRadius: '12px',
-                  border: '1px solid var(--border)',
-                  padding: '12px 18px',
-                  minWidth: '180px',
-                  textAlign: 'center',
-                  boxShadow: '0 0 10px rgba(0,255,200,0.08)',
-                }}
-              >
-                <strong style={{ fontSize: '1rem' }}>{info.label}</strong>
-                <p
-                  style={{
-                    fontSize: '0.9rem',
-                    color: 'var(--text-muted)',
-                    marginTop: '4px',
-                  }}
-                >
-                  {info.value}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: 'linear-gradient(90deg, var(--accent), var(--accent-2))',
+                color: '#fff',
+                fontWeight: 700,
+                padding: '0.75rem 2.2rem',
+                borderRadius: '30px',
+                fontSize: '1.08rem',
+                boxShadow: '0 4px 24px 0 rgba(0,226,255,0.13)',
+                textDecoration: 'none',
+                transition: 'background 0.2s, box-shadow 0.2s',
+                letterSpacing: '0.01em',
+              }}
+              onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, var(--accent-2), var(--accent))'}
+              onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, var(--accent), var(--accent-2))'}
+            >
+              Download CV
+            </a>
+          </div>
         </motion.div>
       </div>
 

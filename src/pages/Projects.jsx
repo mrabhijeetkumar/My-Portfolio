@@ -7,7 +7,7 @@ const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 const PROJECTS = [
     {
         title: 'AI Crop Profit Optimization System',
-        desc: 'Prediction-driven crop and profit recommendation using soil signals, weather trends, and mandi pricing inputs.',
+        desc: 'Built a web platform that predicts the most profitable crops for farmers by analyzing soil, weather, and market data. Uses Python, Flask, and Scikit-learn for real-time ML recommendations. Helped users increase yield and profit with actionable insights.',
         image: withBase('gallery/AI_crop.png'),
         tech: ['Python', 'Flask', 'Scikit-learn', 'Pandas', 'REST API'],
         live: 'https://ai-crop-profit-optimization-system.onrender.com/',
@@ -15,7 +15,7 @@ const PROJECTS = [
     },
     {
         title: 'Student Community Platform',
-        desc: 'Community-first web app for students with secure auth, collaboration spaces, and responsive user flow.',
+        desc: 'Developed a secure, real-time web app for student collaboration with chat, project boards, and resource sharing. Built with React and Supabase, enabling 200+ users to connect and share knowledge efficiently.',
         image: withBase('gallery/student community.png'),
         tech: ['React', 'Supabase', 'JavaScript', 'HTML', 'CSS'],
         live: 'https://studentcommunityplatform.netlify.app/',
@@ -23,7 +23,7 @@ const PROJECTS = [
     },
     {
         title: 'Portfolio Website',
-        desc: 'High-performance personal portfolio built with React and Framer Motion to present work, growth, and impact.',
+        desc: 'Designed and engineered a high-performance portfolio using React and Framer Motion. Features smooth animations, responsive design, and fast load times to showcase projects and skills to recruiters.',
         image: withBase('gallery/portfolioBlack.png'),
         tech: ['React', 'Framer Motion', 'Vite', 'Responsive UI'],
         live: '#top',
@@ -31,11 +31,27 @@ const PROJECTS = [
     },
     {
         title: 'Personalized Gift Recommendation',
-        desc: 'Front-end recommendation interface that maps user preference inputs to personalized gift ideas quickly.',
+        desc: 'Created a recommendation engine that matches user preferences to unique gift ideas. Built with vanilla JS and CSS for instant, interactive suggestions. Used by 100+ users for special occasions.',
         image: withBase('gallery/Gift.png'),
         tech: ['HTML', 'CSS', 'JavaScript'],
         live: 'https://mrabhijeetkumar.github.io/Personalised-Gift-Recomendation-Website/',
         code: 'https://github.com/mrabhijeetkumar/Personalised-Gift-Recomendation-Website',
+    },
+    {
+        title: 'Certificate Showcase',
+        desc: 'Built a dynamic gallery to display earned certificates and achievements. Uses React and CSS grid for a clean, filterable layout. Makes credentials easily accessible for recruiters.',
+        image: withBase('gallery/ach1.svg'),
+        tech: ['React', 'CSS Grid', 'SVG'],
+        live: '#certificates',
+        code: 'https://github.com/mrabhijeetkumar/Certificate-Showcase',
+    },
+    {
+        title: 'Resume Parser Tool',
+        desc: 'Engineered a tool to extract and summarize key skills from uploaded resumes using Python and NLP. Helps automate candidate screening for hiring teams.',
+        image: withBase('gallery/project2.svg'),
+        tech: ['Python', 'NLP', 'Flask'],
+        live: '#resume',
+        code: 'https://github.com/mrabhijeetkumar/Resume-Parser',
     },
 ]
 
@@ -51,7 +67,7 @@ export default function Projects() {
             </header>
 
             <div className="projects-grid">
-                {PROJECTS.map((project, index) => (
+                {PROJECTS.slice(0, 6).map((project, index) => (
                     <motion.article
                         key={project.title}
                         className="project-card"
@@ -74,11 +90,11 @@ export default function Projects() {
                         </div>
 
                         <div className="project-actions">
-                            <a className="btn-ghost" href={project.code} target="_blank" rel="noreferrer">
-                                <Github size={15} /> Source
-                            </a>
                             <a className="btn" href={project.live} target="_blank" rel="noreferrer">
-                                <ExternalLink size={15} /> Live
+                                <ExternalLink size={15} /> Live Demo
+                            </a>
+                            <a className="btn-ghost" href={project.code} target="_blank" rel="noreferrer">
+                                <Github size={15} /> GitHub Code
                             </a>
                         </div>
                     </motion.article>

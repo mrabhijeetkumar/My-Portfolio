@@ -1,82 +1,96 @@
 import React from "react";
-import { motion } from "framer-motion";
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
 
-const AboutMe = () => {
+function About() {
     return (
-        <div
+        <section
             style={{
-                minHeight: "100vh",
+                minHeight: "80vh",
                 width: "100%",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                background:
-                    "radial-gradient(circle at 22% 18%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%), linear-gradient(150deg, color-mix(in srgb, var(--surface) 30%, transparent), transparent)",
-                color: "var(--text)",
-                padding: "3rem 1rem",
+                background: "none",
+                padding: "3.5rem 1rem 2.5rem 1rem",
             }}
         >
-            {/* --- About Me Section --- */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{
-                    y: -3,
-                    borderColor: "color-mix(in srgb, var(--accent) 58%, var(--border))",
-                    boxShadow: "var(--shadow-hard)",
-                }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+            <div
                 style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
                     width: "100%",
                     maxWidth: "1100px",
-                    textAlign: "left",
-                    marginTop: "1rem",
-                    lineHeight: 1.8,
-                    background: "color-mix(in srgb, var(--surface) 90%, transparent)",
-                    padding: "3rem 3.5rem",
-                    borderRadius: "18px",
-                    boxShadow: "var(--shadow-soft)",
-                    backdropFilter: "blur(10px)",
-                    border: "1px solid var(--border)",
-                    transition: "border-color 0.22s ease, box-shadow 0.22s ease",
+                    gap: "3.5rem",
+                    flexWrap: "wrap",
                 }}
             >
-                {/* --- Header --- */}
-                <h2
+                {/* Left: Profile Image in Bordered Box */}
+                <div className="profile-image-container">
+                    <img
+                        src={withBase('profile.png')}
+                        alt="Profile"
+                        className="about-profile-img"
+                    />
+                </div>
+                {/* Right: About Content */}
+                <div
                     style={{
-                        fontSize: "1.9rem",
-                        marginBottom: "1.2rem",
-                        background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
-                        WebkitBackgroundClip: "text",
-                        color: "transparent",
+                        flex: 1,
+                        minWidth: "320px",
+                        maxWidth: "540px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        justifyContent: "center",
                     }}
                 >
-                    About Me
-                </h2>
-
-                {/* --- Description --- */}
-                <p
-                    style={{
-                        fontSize: "1.1rem",
-                        color: "var(--text)",
-                        marginBottom: "1rem",
-                    }}
-                >
-                    I'm Abhijeet Kumar, a Machine Learning enthusiast and Computer Science student focused on building intelligent,
-                    data-driven applications. I enjoy working with machine learning models, data analysis, and full-stack
-                    technologies to create solutions that solve real-world problems. My goal is to design practical AI systems
-                    that combine strong algorithms with clean, user-friendly interfaces while continuously exploring new tools
-                    and technologies in the AI ecosystem.
-                </p>
-
-                <p style={{ marginTop: "1.2rem", color: "var(--text-muted)" }}>
-                    Detailed academic background is presented in the Resume section to keep
-                    this About page focused on profile and mindset.
-                </p>
-            </motion.div>
-        </div>
-    );
-};
-
-export default AboutMe;
+                    <h2
+                        style={{
+                            fontSize: "2.3rem",
+                            fontWeight: 900,
+                            marginBottom: "0.3rem",
+                            color: "#fff",
+                            letterSpacing: "-0.5px",
+                        }}
+                    >
+                        About <span style={{ color: "var(--accent)", fontWeight: 900 }}>Me</span>
+                    </h2>
+                    <h3
+                        style={{
+                            fontSize: "1.25rem",
+                            fontWeight: 700,
+                            color: "var(--accent)",
+                            marginBottom: "1.1rem",
+                            letterSpacing: "-0.2px",
+                        }}
+                    >
+                        Frontend Developer & Machine Learning Engineer
+                    </h3>
+                    <p
+                        style={{
+                            fontSize: "1.08rem",
+                            color: "var(--text)",
+                            marginBottom: "1.3rem",
+                            lineHeight: 1.7,
+                            fontWeight: 500,
+                            textShadow: "0 2px 16px rgba(0,0,0,0.10)",
+                        }}
+                    >
+                        I am a Computer Science student focused on building real-world web applications and AI-powered systems that solve practical problems. I specialize in full-stack development and machine learning, creating scalable, efficient, and user-focused solutions. From designing responsive interfaces to developing intelligent backend logic, I aim to deliver products that are both impactful and performance-driven. I am continuously learning, building, and looking for opportunities to contribute to real-world projects.
+                    </p>
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="about-resume-btn"
+                    >
+                        Read more
+                    </a>
+                </div>
+            </div>
+        </section>
+    )
+}
+export default About;

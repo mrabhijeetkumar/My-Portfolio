@@ -1,3 +1,45 @@
+/* About section profile image container */
+.profile-image-container {
+  background: rgba(16, 32, 56, 0.92);
+  border-radius: 22px;
+  border: 3px solid var(--accent);
+  padding: 2.2rem 2.2rem 1.2rem 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 270px;
+  min-height: 340px;
+  box-shadow: 0 4px 32px 0 rgba(0, 60, 120, 0.10);
+}
+
+/* About section profile image */
+.about-profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 2px 18px 0 rgba(0, 40, 80, 0.10);
+}
+
+/* About section resume button */
+.about-resume-btn {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-weight: 700;
+  padding: 0.7rem 2.1rem;
+  border-radius: 30px;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 226, 255, 0.13);
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
+  display: inline-block;
+}
+
+.about-resume-btn:hover {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -20,8 +62,8 @@
   --glow-b: rgba(41, 166, 255, 0.2);
   --glow-c: rgba(0, 110, 255, 0.14);
   --nav-height: 80px;
-  --section-gap: clamp(0.2rem, 1.2vh, 0.8rem);
-  --section-pad: clamp(3rem, 7vh, 4.8rem);
+  --section-gap: clamp(0.04rem, 0.3vh, 0.12rem);
+  --section-pad: clamp(0.5rem, 1.2vh, 0.7rem);
   --section-reveal-duration: 0.82s;
   --section-reveal-offset: 14px;
   --section-stagger-start: 0.06s;
@@ -63,12 +105,12 @@ body,
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 14% -8%, var(--glow-a), transparent 46%),
-    radial-gradient(circle at 84% 4%, var(--glow-b), transparent 42%),
-    radial-gradient(circle at 56% 108%, var(--glow-c), transparent 40%),
-    linear-gradient(140deg, var(--bg), var(--bg-secondary));
-  background-size: 150% 150%, 145% 145%, 130% 130%, 100% 100%;
-  animation: bodyGradientDrift 22s ease-in-out infinite;
+  /* Aurora image background */
+  background: url('/bg-aurora.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #071a33;
+  /* fallback color */
+  /* Remove SVG/gradient/animation backgrounds */
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -136,7 +178,7 @@ h4 {
   position: relative;
   width: min(1180px, 100% - 2.2rem);
   margin: 0 auto;
-  padding: var(--section-pad) 0;
+  padding: calc(var(--section-pad) * 0.4) 0;
   scroll-margin-top: calc(var(--nav-height) + 20px);
   content-visibility: auto;
   contain-intrinsic-size: 500px;
@@ -176,17 +218,7 @@ h4 {
 }
 
 .page-main>.section-block+.section-block::before {
-  content: '';
-  position: absolute;
-  top: calc(var(--section-gap) * -0.5);
-  left: clamp(0.8rem, 4%, 2.4rem);
-  right: clamp(0.8rem, 4%, 2.4rem);
-  height: 1px;
-  background: linear-gradient(90deg,
-      transparent,
-      color-mix(in srgb, var(--accent) 42%, var(--border)),
-      transparent);
-  opacity: 0.42;
+  content: none;
 }
 
 .section-home {
@@ -226,19 +258,21 @@ h4 {
   background-size: 4px 4px;
 }
 
-.content-shell {
-  background: linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, transparent), color-mix(in srgb, var(--surface) 70%, transparent));
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(12px);
-  transition: border-color 0.26s ease, transform 0.26s ease, box-shadow 0.26s ease;
+
+.content-shell,
+.section-block {
+  background: rgba(16, 32, 56, 0.82);
+  border-radius: 18px;
+  box-shadow: 0 2px 8px 0 rgba(0, 40, 80, 0.06);
+  border: none;
+  backdrop-filter: none;
+  transition: box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .content-shell:hover {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hard);
+  border-color: none;
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 18px 0 rgba(0, 80, 180, 0.08);
 }
 
 .section-header {

@@ -38,12 +38,7 @@ export default function Resume() {
                 }}
                 transition={{ duration: 0.8 }}
                 style={{
-                    background: "color-mix(in srgb, var(--surface) 90%, transparent)",
-                    borderRadius: 16,
                     padding: "40px 30px",
-                    color: "var(--text)",
-                    boxShadow: "var(--shadow-soft)",
-                    border: "1px solid var(--border)",
                     transition: "border-color 0.22s ease, box-shadow 0.22s ease",
                 }}
             >
@@ -88,6 +83,10 @@ export default function Resume() {
                             border: "1px solid var(--border)",
                             transition: "border-color 0.22s ease, box-shadow 0.22s ease",
                         }}
+                        style={{
+                            padding: "20px",
+                            transition: "border-color 0.22s ease, box-shadow 0.22s ease",
+                        }}
                     >
                         <h3 style={{ fontSize: 22, color: "var(--accent)", marginBottom: 8 }}>
                             Abhijeet Kumar
@@ -127,6 +126,11 @@ export default function Resume() {
                             lineHeight: 1.6,
                             transition: "border-color 0.22s ease, box-shadow 0.22s ease",
                         }}
+                        style={{
+                            padding: "20px",
+                            lineHeight: 1.6,
+                            transition: "border-color 0.22s ease, box-shadow 0.22s ease",
+                        }}
                     >
                         <strong style={{ color: "var(--accent)" }}>Professional Summary</strong>
                         <p style={{ marginTop: 8, color: "var(--text)" }}>
@@ -155,6 +159,11 @@ export default function Resume() {
                         background: "color-mix(in srgb, var(--surface) 86%, transparent)",
                         transition: "border-color 0.22s ease",
                     }}
+                    style={{
+                        marginTop: 40,
+                        padding: "20px 24px",
+                        transition: "border-color 0.22s ease",
+                    }}
                 >
                     <h4 style={{ fontSize: 20, color: "var(--accent)", marginBottom: 12 }}>
                         Education
@@ -173,6 +182,10 @@ export default function Resume() {
                                     borderRadius: 10,
                                     padding: "14px 16px",
                                     background: "color-mix(in srgb, var(--surface) 88%, transparent)",
+                                    transition: "border-color 0.2s ease, background 0.2s ease",
+                                }}
+                                style={{
+                                    padding: "14px 16px",
                                     transition: "border-color 0.2s ease, background 0.2s ease",
                                 }}
                             >
