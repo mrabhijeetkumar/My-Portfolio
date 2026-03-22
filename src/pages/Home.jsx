@@ -57,8 +57,8 @@ export default function Home() {
   return (
     <section
       style={{
-        minHeight: '100vh',
-        width: '100vw',
+        minHeight: 'calc(100vh - var(--nav-height))',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
