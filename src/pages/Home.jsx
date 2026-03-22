@@ -57,16 +57,18 @@ export default function Home() {
   return (
     <section
       style={{
-        minHeight: '90vh',
-        width: '100%',
+        minHeight: '100vh',
+        width: '100vw',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        gap: '3rem',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '3rem 2rem 1rem',
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        margin: 0,
         background: 'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
         color: 'var(--text)',
+        boxSizing: 'border-box',
       }}
     >
       <style>
@@ -99,11 +101,12 @@ export default function Home() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-evenly',
+          justifyContent: 'center',
           width: '100%',
           maxWidth: '1250px',
           flexWrap: 'wrap',
           gap: '2rem',
+          flex: '0 0 auto',
         }}
       >
         {/* --- Left: Animated Glowing Photo --- */}
@@ -215,7 +218,9 @@ export default function Home() {
               textShadow: '0 2px 16px rgba(0,0,0,0.10)',
             }}
           >
-            I am a Computer Science student focused on building real-world web applications and AI-powered systems that solve practical problems. I specialize in full-stack development and machine learning, creating scalable, efficient, and user-focused solutions. From designing responsive interfaces to developing intelligent backend logic, I aim to deliver products that are both impactful and performance-driven. I am continuously learning, building, and looking for opportunities to contribute to real-world projects.
+            Building scalable web applications and AI-powered systems to solve real-world problems.
+            Focused on full-stack development and machine learning with clean, high-performance solutions.
+            Focused on performance, clean design, and user-driven solutions.
           </p>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
             <a
@@ -243,54 +248,44 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* --- Bottom Quick Links --- */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
+      {/* --- Bottom Quick Links (icons only, no heading) --- */}
+      <div
         style={{
-          textAlign: 'center',
-          marginTop: '1.2rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '22px',
+          marginBottom: '2.5rem',
         }}
       >
-        <h2 style={{ fontSize: '1.4rem', marginBottom: '0.5rem' }}>Connect</h2>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '22px',
-          }}
-        >
-          {quickLinks.map((item, i) => (
-            <motion.a
-              key={i}
-              href={item.link}
-              title={item.title}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -3, scale: 1.08 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 17 }}
-            >
-              <motion.img
-                src={item.img}
-                alt={item.title}
-                whileHover={{
-                  filter: 'drop-shadow(0 0 11px var(--accent)) brightness(1.14)',
-                }}
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  filter: 'brightness(0.9)',
-                  transition: 'all 0.3s ease',
-                }}
-              />
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
+        {quickLinks.map((item, i) => (
+          <motion.a
+            key={i}
+            href={item.link}
+            title={item.title}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -3, scale: 1.08 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 17 }}
+          >
+            <motion.img
+              src={item.img}
+              alt={item.title}
+              whileHover={{
+                filter: 'drop-shadow(0 0 11px var(--accent)) brightness(1.14)',
+              }}
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                filter: 'brightness(0.9)',
+                transition: 'all 0.3s ease',
+              }}
+            />
+          </motion.a>
+        ))}
+      </div>
     </section>
   )
 }
