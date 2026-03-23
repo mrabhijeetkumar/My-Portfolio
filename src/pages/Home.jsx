@@ -178,72 +178,75 @@ export default function Home() {
             justifyContent: 'center',
           }}
         >
-          <h1
-            style={{
-              fontSize: '3.2rem',
-              fontWeight: 800,
-              lineHeight: 1.13,
-              marginBottom: '0.2rem',
-              color: 'var(--text)',
-              letterSpacing: '-1px',
-              background: 'linear-gradient(90deg, var(--text) 60%, var(--accent) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'inline-block',
-            }}
-          >
-            Hi, I'm<br />
-            <span style={{ color: 'var(--accent)', fontWeight: 900, fontSize: '3.3rem', WebkitTextFillColor: 'var(--accent)', background: 'none' }}>Abhijeet Kumar</span>
-          </h1>
-          <h2
-            style={{
+          <div style={{ maxWidth: 600, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '0 1rem' }}>
+            <span style={{ fontSize: '1.1rem', color: '#b0bec5', fontWeight: 600, marginBottom: '0.2rem', letterSpacing: '0.5px' }}>Hi, I'm</span>
+            <h1 style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', margin: 0, lineHeight: 1.13, letterSpacing: '-1.5px' }}>Abhijeet Kumar</h1>
+            <h2 style={{
               fontSize: '1.45rem',
               fontWeight: 700,
-              color: 'var(--accent)',
-              margin: '0.2rem 0 1.1rem 0',
+              color: '#2196f3',
+              margin: '1.1rem 0 1.2rem 0',
               letterSpacing: '-0.2px',
-              textShadow: '0 2px 18px rgba(0,226,255,0.10)',
-              minHeight: '2.2em',
-            }}
-          >
-            <span className="typing-effect">{displayText}</span>
-          </h2>
-          <p
-            style={{
-              fontSize: '1.13rem',
-              color: 'var(--text-muted)',
-              margin: '0.2rem 0 1.2rem 0',
-              maxWidth: '95%',
-              fontWeight: 500,
-              textShadow: '0 2px 16px rgba(0,0,0,0.10)',
-            }}
-          >
-            Building scalable web applications and AI-powered systems to solve real-world problems.
-            Focused on full-stack development and machine learning with clean, high-performance solutions.
-            Focused on performance, clean design, and user-driven solutions.
-          </p>
-          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                background: 'linear-gradient(90deg, var(--accent), var(--accent-2))',
-                color: '#fff',
-                fontWeight: 700,
-                padding: '0.75rem 2.2rem',
-                borderRadius: '30px',
-                fontSize: '1.08rem',
-                boxShadow: '0 4px 24px 0 rgba(0,226,255,0.13)',
-                textDecoration: 'none',
-                transition: 'background 0.2s, box-shadow 0.2s',
-                letterSpacing: '0.01em',
-              }}
-              onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, var(--accent-2), var(--accent))'}
-              onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, var(--accent), var(--accent-2))'}
-            >
-              Download CV
-            </a>
+              lineHeight: 1.3
+            }}>
+              Full Stack Developer & Machine Learning Engineer
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: '#b0bec5', margin: '0 0 1.6rem 0', maxWidth: 520, fontWeight: 500, lineHeight: 1.7, letterSpacing: '0.01em' }}>
+              Building scalable web applications and AI-powered systems to solve real-world problems. Focused on full-stack development and machine learning with clean, high-performance solutions. Focused on performance, clean design, and user-driven solutions.
+            </p>
+            <div style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.7rem' }}>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'linear-gradient(90deg, #2196f3, #00e2ff)',
+                  color: '#fff',
+                  fontWeight: 700,
+                  padding: '0.78rem 2.3rem',
+                  borderRadius: '2rem',
+                  fontSize: '1.08rem',
+                  boxShadow: '0 4px 24px 0 rgba(33,150,243,0.13)',
+                  textDecoration: 'none',
+                  transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
+                  letterSpacing: '0.01em',
+                  border: 'none',
+                  outline: 'none',
+                  display: 'inline-block',
+                }}
+                onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #00e2ff, #2196f3)'}
+                onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #2196f3, #00e2ff)'}
+              >
+                Download CV
+              </a>
+              <a
+                href="#projects"
+                style={{
+                  background: 'none',
+                  color: '#2196f3',
+                  fontWeight: 700,
+                  padding: '0.78rem 2.3rem',
+                  borderRadius: '2rem',
+                  fontSize: '1.08rem',
+                  border: '2px solid #2196f3',
+                  textDecoration: 'none',
+                  transition: 'background 0.2s, color 0.2s, border 0.2s, transform 0.15s',
+                  letterSpacing: '0.01em',
+                  outline: 'none',
+                  display: 'inline-block',
+                }}
+                onMouseOver={e => {
+                  e.currentTarget.style.background = '#2196f3';
+                  e.currentTarget.style.color = '#fff';
+                }}
+                onMouseOut={e => {
+                  e.currentTarget.style.background = 'none';
+                  e.currentTarget.style.color = '#2196f3';
+                }}
+              >
+                View Projects
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -254,38 +257,47 @@ export default function Home() {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: '22px',
+          gap: '16px',
           marginBottom: '2.5rem',
+          marginTop: '1.2rem',
         }}
       >
-        {quickLinks.map((item, i) => (
-          <motion.a
+        {quickLinks.map((link, i) => (
+          <a
             key={i}
-            href={item.link}
-            title={item.title}
+            href={link.link}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ y: -3, scale: 1.08 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 17 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
+              background: 'rgba(255,255,255,0.04)',
+              boxShadow: '0 2px 8px 0 rgba(33,150,243,0.07)',
+              color: '#fff',
+              fontSize: 20,
+              transition: 'background 0.18s, color 0.18s, transform 0.15s',
+              textDecoration: 'none',
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = 'rgba(33,150,243,0.13)';
+              e.currentTarget.style.color = '#2196f3';
+              e.currentTarget.style.transform = 'scale(1.10)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
           >
-            <motion.img
-              src={item.img}
-              alt={item.title}
-              whileHover={{
-                filter: 'drop-shadow(0 0 11px var(--accent)) brightness(1.14)',
-              }}
-              style={{
-                width: '50px',
-                height: '50px',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                filter: 'brightness(0.9)',
-                transition: 'all 0.3s ease',
-              }}
-            />
-          </motion.a>
+            <img src={link.img} alt={link.title} style={{ width: 18, height: 18, filter: 'brightness(1.1)' }} />
+          </a>
         ))}
       </div>
+
     </section>
-  )
+  );
 }
