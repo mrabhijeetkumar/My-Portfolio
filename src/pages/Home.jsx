@@ -17,8 +17,8 @@ export default function Home() {
   ]
 
   const typeStrings = [
-    'Machine Learning Engineer',
     'Full Stack Developer',
+    'AI-ML Engineer',
     'Building AI-Powered Products',
   ]
 
@@ -60,7 +60,7 @@ export default function Home() {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center', // Fix: Content block ko section ke center me lane ke liye center use kiya hai
+        justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 'clamp(2rem, 6vw, 4.25rem)',
         paddingBottom: 'clamp(2.5rem, 6vw, 4.5rem)',
@@ -85,7 +85,7 @@ export default function Home() {
             border-right: .15em solid var(--accent);
             min-height: 1.35em;
             font-family: inherit;
-            font-size: clamp(1rem, 2.1vw, 1.3rem);
+            font-size: clamp(1.4rem, 2.8vw, 1.8rem);
             font-weight: 700;
             color: var(--accent);
             letter-spacing: 0.01em;
@@ -94,7 +94,7 @@ export default function Home() {
           }
           @media (max-width: 900px) {
             .home-content-stack {
-              gap: 1.2rem !important;
+              gap: 2rem !important;
             }
             .home-info-panel {
               min-width: 100% !important;
@@ -106,7 +106,7 @@ export default function Home() {
             }
             .home-cta-wrap {
               width: 100%;
-              gap: 0.8rem !important;
+              gap: 1rem !important;
               justify-content: center;
             }
             .home-cta-wrap a {
@@ -114,6 +114,9 @@ export default function Home() {
               text-align: center;
               padding-left: 0.8rem !important;
               padding-right: 0.8rem !important;
+            }
+            .social-links-wrap {
+              justify-content: center !important;
             }
           }
           @media (max-width: 600px) {
@@ -133,7 +136,7 @@ export default function Home() {
           width: '100%',
           maxWidth: '1180px',
           flexWrap: 'wrap',
-          gap: 'clamp(1.4rem, 4vw, 3rem)',
+          gap: 'clamp(2rem, 4vw, 4rem)',
           flex: '0 0 auto',
         }}
       >
@@ -214,17 +217,15 @@ export default function Home() {
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'center',
-              gap: '0.25rem',
               padding: '0 clamp(0rem, 1vw, 0.6rem)',
             }}
           >
-            {/* Flat structure for better spacing control */}
             <span
               style={{
                 fontSize: 'clamp(1.85rem, 4.5vw, 3rem)',
                 color: 'var(--text)',
                 fontWeight: 800,
-                marginBottom: '0.18rem',
+                marginBottom: '0.6rem',
                 letterSpacing: '-0.02em',
                 lineHeight: 1,
               }}
@@ -236,7 +237,7 @@ export default function Home() {
                 fontSize: 'clamp(2.15rem, 6vw, 3.55rem)',
                 fontWeight: 900,
                 color: 'var(--text)',
-                margin: 0,
+                margin: '0 0 0.6rem 0',
                 lineHeight: 1.12,
                 letterSpacing: '-0.035em',
               }}
@@ -244,8 +245,8 @@ export default function Home() {
               Abhijeet Kumar
             </h1>
 
-            <h2 style={{ margin: '0.7rem 0 0.55rem 0', display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: 'clamp(1rem, 2vw, 1.18rem)', fontWeight: 700, color: 'var(--text)' }}>I am a</span>
+            <h2 style={{ margin: '0 0 0.6rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 'clamp(1.4rem, 2.8vw, 1.8rem)', fontWeight: 700, color: 'var(--text)' }}>I am a</span>
               <span className="typing-effect">{displayText}</span>
             </h2>
 
@@ -253,7 +254,7 @@ export default function Home() {
               style={{
                 fontSize: 'clamp(0.97rem, 1.45vw, 1.07rem)',
                 color: 'var(--text-muted)',
-                margin: '0 0 1.25rem 0',
+                margin: '0 0 1.2rem 0',
                 maxWidth: 560,
                 fontWeight: 500,
                 lineHeight: 1.75,
@@ -264,7 +265,7 @@ export default function Home() {
               My focus is writing clean code, designing smooth user experiences, and delivering reliable solutions.
             </p>
 
-            <div className="home-cta-wrap" style={{ display: 'flex', gap: '0.85rem', marginBottom: '1.35rem', flexWrap: 'wrap' }}>
+            <div className="home-cta-wrap" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
               <a
                 href={resumeLink}
                 target="_blank"
@@ -324,57 +325,55 @@ export default function Home() {
                 View Projects
               </a>
             </div>
-          </div>
-        </motion.div>
-      </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '0.7rem',
-          marginBottom: '0.55rem',
-          marginTop: '0.4rem',
-        }}
-      >
-        {quickLinks.map((link) => {
-          const Icon = link.icon
-          return (
-            <a
-              key={link.title}
-              href={link.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={link.title}
+            <div
+              className="social-links-wrap"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 46,
-                height: 46,
-                borderRadius: '50%',
-                border: 'none',
-                background: '#000',
-                boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
-                transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
-                textDecoration: 'none',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = '#111'
-                e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
-                e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = '#000'
-                e.currentTarget.style.transform = 'translateY(0) scale(1)'
-                e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '1rem',
               }}
             >
-              <Icon size={23} color="#fff" aria-hidden="true" />
-            </a>
-          )
-        })}
+              {quickLinks.map((link) => {
+                const Icon = link.icon
+                return (
+                  <a
+                    key={link.title}
+                    href={link.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.title}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 50,
+                      height: 50,
+                      borderRadius: '50%',
+                      border: '2px solid var(--accent)',
+                      background: '#000',
+                      boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
+                      transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
+                      textDecoration: 'none',
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.background = '#111'
+                      e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
+                      e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.background = '#000'
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                      e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
+                    }}
+                  >
+                    <Icon size={26} color="var(--accent)" aria-hidden="true" />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
