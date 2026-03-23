@@ -209,11 +209,12 @@ export default function Home() {
           >
             <span
               style={{
-                fontSize: '1.05rem',
-                color: 'var(--text-muted)',
-                fontWeight: 600,
-                marginBottom: '0.2rem',
-                letterSpacing: '0.5px',
+                fontSize: 'clamp(2.6rem, 6vw, 4.1rem)',
+                color: 'var(--text)',
+                fontWeight: 800,
+                marginBottom: '0.15rem',
+                letterSpacing: '-0.5px',
+                lineHeight: 0.95,
               }}
             >
               Hi, I&apos;m
@@ -231,7 +232,8 @@ export default function Home() {
               Abhijeet Kumar
             </h1>
 
-            <h2 style={{ margin: '1.05rem 0 0.9rem 0' }}>
+            <h2 style={{ margin: '1.05rem 0 0.9rem 0', display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text)' }}>I am a</span>
               <span className="typing-effect">{displayText}</span>
             </h2>
 
@@ -338,21 +340,21 @@ export default function Home() {
               width: 40,
               height: 40,
               borderRadius: '50%',
-              border: '1.5px solid color-mix(in srgb, var(--accent) 60%, transparent)',
-              background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
-              boxShadow: '0 6px 14px color-mix(in srgb, var(--accent) 14%, transparent)',
+              border: 'none',
+              background: '#000',
+              boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
               transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
               textDecoration: 'none',
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = 'color-mix(in srgb, var(--accent) 22%, transparent)'
+              e.currentTarget.style.background = '#111'
               e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
-              e.currentTarget.style.boxShadow = '0 8px 18px color-mix(in srgb, var(--accent) 24%, transparent)'
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = 'color-mix(in srgb, var(--accent) 10%, transparent)'
+              e.currentTarget.style.background = '#000'
               e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              e.currentTarget.style.boxShadow = '0 6px 14px color-mix(in srgb, var(--accent) 14%, transparent)'
+              e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
             }}
           >
             <img
@@ -361,7 +363,7 @@ export default function Home() {
               style={{
                 width: 18,
                 height: 18,
-                filter: 'brightness(0) saturate(100%) invert(88%) sepia(84%) saturate(2622%) hue-rotate(144deg) brightness(101%) contrast(106%)',
+                filter: 'brightness(0) invert(1)',
               }}
             />
           </a>
