@@ -6,24 +6,24 @@ const EDUCATION_ITEMS = [
   {
     institute: 'Lovely Professional University, Phagwara',
     degree: 'Bachelor of Technology (CSE)',
-    period: 'Sept 2022 – Sept 2026',
-    grade: '8.11 CGPA',
+    period: 'Aug 2023 – July 2027',
+    grade: '6.33 CGPA',
     summary:
       "I am currently pursuing my Bachelor's in Computer Science and Engineering with strong focus on data structures, algorithms, OOP, and database systems.",
   },
   {
-    institute: 'Ispat English Medium School, Rourkela',
+    institute: 'Baulia SR. Secondary, Baulia, Rohtas-Bihar',
     degree: 'ISC (Class XII)',
-    period: 'Apr 2020 – Apr 2022',
-    grade: '85%',
+    period: 'Apr 2021 – Apr 2023',
+    grade: '67%',
     summary:
       'Completed higher secondary education with emphasis on analytical subjects and computer fundamentals.',
   },
   {
-    institute: 'Chinmaya Vidyalaya English Medium School, Rourkela',
+    institute: 'Utkramit Madhamik School, Majhigawan, Rohtas-Bihar',
     degree: 'ICSE (Class X)',
     period: 'Apr 2011 – Apr 2020',
-    grade: '93%',
+    grade: '82%',
     summary:
       'Built core academic foundation through strong performance in science, mathematics, and communication.',
   },
