@@ -11,6 +11,7 @@ const links = [
   { label: 'Skills', to: 'skills' },
   { label: 'Projects', to: 'projects' },
   { label: 'Certificates', to: 'certificates' },
+  { label: 'Education', to: 'education' },
   { label: 'Contact', to: 'contact' },
 ]
 

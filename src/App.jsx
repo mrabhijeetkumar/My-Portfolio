@@ -7,6 +7,7 @@ import About from './pages/About'
 import SkillNetwork from './pages/Skills'
 import Projects from './pages/Projects'
 import Certificates from './pages/Certificates'
+import Education from './pages/Education'
 // import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
@@ -32,6 +33,9 @@ export default function App() {
           </section>
           <section id="certificates" className="section-block">
             <Certificates />
+          </section>
+          <section id="education" className="section-block">
+            <Education />
           </section>
 
           <section id="contact" className="section-block section-contact">
