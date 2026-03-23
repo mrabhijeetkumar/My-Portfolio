@@ -6,6 +6,7 @@ const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
 const photo = withBase('profile.png')
 const resumeLink = withBase('resume.pdf')
+
 export default function Home() {
   const quickLinks = [
     { icon: FaGithub, title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
@@ -59,10 +60,10 @@ export default function Home() {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'center', // Fix: Content block ko section ke center me lane ke liye center use kiya hai
         alignItems: 'center',
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
+        paddingTop: '4rem', // Fix: Profressional breathing room dene ke liye center kiya hai to padding badhaya hai
+        paddingBottom: '4rem',
         margin: 0,
         background:
           'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
@@ -119,7 +120,7 @@ export default function Home() {
           width: '100%',
           maxWidth: '1250px',
           flexWrap: 'wrap',
-          gap: '2rem',
+          gap: '2.5rem', // Center kar rahe hain isliye overall gap thoda standard kiya hai.
           flex: '0 0 auto',
         }}
       >
@@ -202,12 +203,13 @@ export default function Home() {
               padding: '0 1rem',
             }}
           >
+            {/* Flat structure for better spacing control */}
             <span
               style={{
                 fontSize: 'clamp(2rem, 4.2vw, 3.2rem)',
                 color: 'var(--text)',
                 fontWeight: 800,
-                marginBottom: '0.15rem',
+                marginBottom: '0.25rem', // Fix: Bottom margin sligtly increased to create a standard separation.
                 letterSpacing: '-0.5px',
                 lineHeight: 0.95,
               }}
@@ -216,18 +218,18 @@ export default function Home() {
             </span>
             <h1
               style={{
-                fontSize: '3rem',
+                fontSize: 'clamp(2.4rem, 5vw, 3.2rem)',
                 fontWeight: 900,
                 color: 'var(--text)',
                 margin: 0,
                 lineHeight: 1.13,
-                letterSpacing: '-1.5px',
+                letterSpacing: '-1.5px', // Tight lettering is kept as a style choice.
               }}
             >
               Abhijeet Kumar
             </h1>
 
-            <h2 style={{ margin: '1.05rem 0 0.9rem 0', display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+            <h2 style={{ margin: '0.8rem 0 0.6rem 0', display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text)' }}>I am a</span>
               <span className="typing-effect">{displayText}</span>
             </h2>
@@ -236,7 +238,7 @@ export default function Home() {
               style={{
                 fontSize: '1.03rem',
                 color: 'var(--text-muted)',
-                margin: '0 0 1.6rem 0',
+                margin: '0 0 1.2rem 0', // Fix: Reduced bottom margin.
                 maxWidth: 520,
                 fontWeight: 500,
                 lineHeight: 1.7,
@@ -247,7 +249,7 @@ export default function Home() {
               My focus is writing clean code, designing smooth user experiences, and delivering reliable solutions.
             </p>
 
-            <div className="home-cta-wrap" style={{ display: 'flex', gap: '1rem', marginBottom: '1.7rem', flexWrap: 'wrap' }}>
+            <div className="home-cta-wrap" style={{ display: 'flex', gap: '1rem', marginBottom: '1.3rem', flexWrap: 'wrap' }}>
               <a
                 href={resumeLink}
                 target="_blank"
@@ -317,45 +319,45 @@ export default function Home() {
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '14px',
-          marginBottom: '2.5rem',
-          marginTop: '1.2rem',
+          marginBottom: '1.5rem', // Reduced icon margins for standard positioning.
+          marginTop: '0.8rem', // Reduced icon margins for standard positioning.
         }}
       >
         {quickLinks.map((link) => {
           const Icon = link.icon
           return (
-          <a
-            key={link.title}
-            href={link.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={link.title}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              border: 'none',
-              background: '#000',
-              boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
-              transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
-              textDecoration: 'none',
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.background = '#111'
-              e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
-              e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.background = '#000'
-              e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
-            }}
-          >
-            <Icon size={26} color="#fff" aria-hidden="true" />
-          </a>
+            <a
+              key={link.title}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.title}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 50,
+                height: 50,
+                borderRadius: '50%',
+                border: 'none',
+                background: '#000',
+                boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
+                transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
+                textDecoration: 'none',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = '#111'
+                e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
+                e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = '#000'
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
+              }}
+            >
+              <Icon size={32} color="#fff" aria-hidden="true" />
+            </a>
           )
         })}
       </div>
