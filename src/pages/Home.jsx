@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaWhatsapp, FaInstagram } from 'react-icons/fa'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
 const photo = withBase('profile.png')
 const resumeLink = withBase('resume.pdf')
-const githubLogo = withBase('github.png')
-const linkedinLogo = withBase('linkedin.png')
-const gmailLogo = withBase('gmail.png')
-const whatsappLogo = withBase('whatsapp.png')
-const instagramLogo = withBase('insta.png')
-
 export default function Home() {
   const quickLinks = [
-    { img: githubLogo, title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
-    { img: linkedinLogo, title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
-    { img: gmailLogo, title: 'Email', link: 'mailto:abhijeetmehtaji@gmail.com' },
-    { img: whatsappLogo, title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
-    { img: instagramLogo, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
+    { icon: FaGithub, title: 'GitHub', link: 'https://github.com/mrabhijeetkumar' },
+    { icon: FaLinkedinIn, title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
+    { icon: FaEnvelope, title: 'Email', link: 'mailto:abhijeetmehtaji@gmail.com' },
+    { icon: FaWhatsapp, title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
+    { icon: FaInstagram, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
   ]
 
   const typeStrings = [
@@ -209,7 +204,7 @@ export default function Home() {
           >
             <span
               style={{
-                fontSize: 'clamp(2.6rem, 6vw, 4.1rem)',
+                fontSize: 'clamp(2rem, 4.2vw, 3.2rem)',
                 color: 'var(--text)',
                 fontWeight: 800,
                 marginBottom: '0.15rem',
@@ -326,7 +321,9 @@ export default function Home() {
           marginTop: '1.2rem',
         }}
       >
-        {quickLinks.map((link) => (
+        {quickLinks.map((link) => {
+          const Icon = link.icon
+          return (
           <a
             key={link.title}
             href={link.link}
@@ -357,17 +354,10 @@ export default function Home() {
               e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
             }}
           >
-            <img
-              src={link.img}
-              alt={link.title}
-              style={{
-                width: 18,
-                height: 18,
-                filter: 'brightness(0) invert(1)',
-              }}
-            />
+            <Icon size={26} color="#fff" aria-hidden="true" />
           </a>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
