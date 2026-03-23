@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
-// 🖼️ Public assets resolved against the GitHub Pages base path
 const photo = withBase('profile.png')
+const resumeLink = withBase('resume.pdf')
 const githubLogo = withBase('github.png')
 const linkedinLogo = withBase('linkedin.png')
 const gmailLogo = withBase('gmail.png')
@@ -20,39 +20,42 @@ export default function Home() {
     { img: instagramLogo, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
   ]
 
-  // Animated typewriter effect for headline
   const typeStrings = [
     'Machine Learning Engineer',
-    'Full Stack Developer & Machine Learning Engineer',
-  ];
-  const [displayText, setDisplayText] = useState('');
-  const [typeIndex, setTypeIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+    'Full Stack Developer',
+    'Building AI-Powered Products',
+  ]
+
+  const [displayText, setDisplayText] = useState('')
+  const [typeIndex, setTypeIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    let typingTimeout;
-    const currentString = typeStrings[typeIndex];
+    let typingTimeout
+    const currentString = typeStrings[typeIndex]
+
     if (!isDeleting && charIndex < currentString.length) {
       typingTimeout = setTimeout(() => {
-        setDisplayText(currentString.substring(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      }, 70);
+        setDisplayText(currentString.substring(0, charIndex + 1))
+        setCharIndex(charIndex + 1)
+      }, 65)
     } else if (isDeleting && charIndex > 0) {
       typingTimeout = setTimeout(() => {
-        setDisplayText(currentString.substring(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-      }, 40);
+        setDisplayText(currentString.substring(0, charIndex - 1))
+        setCharIndex(charIndex - 1)
+      }, 35)
     } else if (!isDeleting && charIndex === currentString.length) {
-      typingTimeout = setTimeout(() => setIsDeleting(true), 1200);
+      typingTimeout = setTimeout(() => setIsDeleting(true), 1100)
     } else if (isDeleting && charIndex === 0) {
       typingTimeout = setTimeout(() => {
-        setIsDeleting(false);
-        setTypeIndex((typeIndex + 1) % typeStrings.length);
-      }, 500);
+        setIsDeleting(false)
+        setTypeIndex((prev) => (prev + 1) % typeStrings.length)
+      }, 350)
     }
-    return () => clearTimeout(typingTimeout);
-  }, [charIndex, isDeleting, typeIndex]);
+
+    return () => clearTimeout(typingTimeout)
+  }, [charIndex, isDeleting, typeIndex, typeStrings])
 
   return (
     <section
@@ -66,17 +69,14 @@ export default function Home() {
         paddingTop: '1rem',
         paddingBottom: '1rem',
         margin: 0,
-        background: 'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
+        background:
+          'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
         color: 'var(--text)',
         boxSizing: 'border-box',
       }}
     >
       <style>
         {`
-          @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-          }
           @keyframes blink {
             50% { border-color: transparent; }
           }
@@ -87,17 +87,36 @@ export default function Home() {
             border-right: .15em solid var(--accent);
             min-height: 1.2em;
             font-family: inherit;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--accent);
             letter-spacing: 0.01em;
             animation: blink .8s infinite;
+            max-width: 100%;
+          }
+          @media (max-width: 900px) {
+            .home-content-stack {
+              gap: 1.2rem !important;
+            }
+            .home-info-panel {
+              min-width: 100% !important;
+            }
+            .home-cta-wrap {
+              width: 100%;
+              gap: 0.8rem !important;
+            }
+            .home-cta-wrap a {
+              flex: 1;
+              text-align: center;
+              padding-left: 0.8rem !important;
+              padding-right: 0.8rem !important;
+            }
           }
         `}
       </style>
 
-      {/* --- Top Section: Photo + Info --- */}
       <div
+        className="home-content-stack"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -109,7 +128,6 @@ export default function Home() {
           flex: '0 0 auto',
         }}
       >
-        {/* --- Left: Animated Glowing Photo --- */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -164,8 +182,8 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* --- Right: Info Section --- */}
         <motion.div
+          className="home-info-panel"
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
@@ -178,70 +196,117 @@ export default function Home() {
             justifyContent: 'center',
           }}
         >
-          <div style={{ maxWidth: 600, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '0 1rem' }}>
-            <span style={{ fontSize: '1.1rem', color: '#b0bec5', fontWeight: 600, marginBottom: '0.2rem', letterSpacing: '0.5px' }}>Hi, I'm</span>
-            <h1 style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', margin: 0, lineHeight: 1.13, letterSpacing: '-1.5px' }}>Abhijeet Kumar</h1>
-            <h2 style={{
-              fontSize: '1.45rem',
-              fontWeight: 700,
-              color: '#2196f3',
-              margin: '1.1rem 0 1.2rem 0',
-              letterSpacing: '-0.2px',
-              lineHeight: 1.3
-            }}>
-              Full Stack Developer & Machine Learning Engineer
+          <div
+            style={{
+              maxWidth: 600,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              padding: '0 1rem',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 'clamp(2.6rem, 6vw, 4.1rem)',
+                color: 'var(--text)',
+                fontWeight: 800,
+                marginBottom: '0.15rem',
+                letterSpacing: '-0.5px',
+                lineHeight: 0.95,
+              }}
+            >
+              Hi, I&apos;m
+            </span>
+            <h1
+              style={{
+                fontSize: '3rem',
+                fontWeight: 900,
+                color: 'var(--text)',
+                margin: 0,
+                lineHeight: 1.13,
+                letterSpacing: '-1.5px',
+              }}
+            >
+              Abhijeet Kumar
+            </h1>
+
+            <h2 style={{ margin: '1.05rem 0 0.9rem 0', display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text)' }}>I am a</span>
+              <span className="typing-effect">{displayText}</span>
             </h2>
-            <p style={{ fontSize: '1.05rem', color: '#b0bec5', margin: '0 0 1.6rem 0', maxWidth: 520, fontWeight: 500, lineHeight: 1.7, letterSpacing: '0.01em' }}>
-              Building scalable web applications and AI-powered systems to solve real-world problems. Focused on full-stack development and machine learning with clean, high-performance solutions. Focused on performance, clean design, and user-driven solutions.
+
+            <p
+              style={{
+                fontSize: '1.03rem',
+                color: 'var(--text-muted)',
+                margin: '0 0 1.6rem 0',
+                maxWidth: 520,
+                fontWeight: 500,
+                lineHeight: 1.7,
+                letterSpacing: '0.01em',
+              }}
+            >
+              I create fast, responsive, and user-friendly web applications with practical machine-learning features.
+              My focus is writing clean code, designing smooth user experiences, and delivering reliable solutions.
             </p>
-            <div style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.7rem' }}>
+
+            <div className="home-cta-wrap" style={{ display: 'flex', gap: '1rem', marginBottom: '1.7rem', flexWrap: 'wrap' }}>
               <a
-                href="/resume.pdf"
+                href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: 'linear-gradient(90deg, #2196f3, #00e2ff)',
-                  color: '#fff',
+                  background: 'var(--accent)',
+                  color: 'var(--bg)',
                   fontWeight: 700,
-                  padding: '0.78rem 2.3rem',
+                  padding: '0.78rem 2.1rem',
                   borderRadius: '2rem',
-                  fontSize: '1.08rem',
-                  boxShadow: '0 4px 24px 0 rgba(33,150,243,0.13)',
+                  fontSize: '1.03rem',
+                  boxShadow: '0 4px 20px color-mix(in srgb, var(--accent) 35%, transparent)',
                   textDecoration: 'none',
-                  transition: 'background 0.2s, box-shadow 0.2s, transform 0.15s',
+                  transition: 'transform 0.18s, box-shadow 0.18s, filter 0.18s',
                   letterSpacing: '0.01em',
-                  border: 'none',
+                  border: '2px solid var(--accent)',
                   outline: 'none',
                   display: 'inline-block',
                 }}
-                onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #00e2ff, #2196f3)'}
-                onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #2196f3, #00e2ff)'}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.filter = 'brightness(1.08)'
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.filter = 'brightness(1)'
+                }}
               >
                 Download CV
               </a>
+
               <a
                 href="#projects"
                 style={{
-                  background: 'none',
-                  color: '#2196f3',
+                  background: 'transparent',
+                  color: 'var(--accent)',
                   fontWeight: 700,
-                  padding: '0.78rem 2.3rem',
+                  padding: '0.78rem 2.1rem',
                   borderRadius: '2rem',
-                  fontSize: '1.08rem',
-                  border: '2px solid #2196f3',
+                  fontSize: '1.03rem',
+                  border: '2px solid var(--accent)',
                   textDecoration: 'none',
-                  transition: 'background 0.2s, color 0.2s, border 0.2s, transform 0.15s',
+                  transition: 'transform 0.18s, background 0.18s, color 0.18s, box-shadow 0.18s',
                   letterSpacing: '0.01em',
                   outline: 'none',
                   display: 'inline-block',
                 }}
-                onMouseOver={e => {
-                  e.currentTarget.style.background = '#2196f3';
-                  e.currentTarget.style.color = '#fff';
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = 'color-mix(in srgb, var(--accent) 16%, transparent)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
                 }}
-                onMouseOut={e => {
-                  e.currentTarget.style.background = 'none';
-                  e.currentTarget.style.color = '#2196f3';
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'transparent'
+                  e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
                 View Projects
@@ -251,53 +316,59 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* --- Bottom Quick Links (icons only, no heading) --- */}
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: '16px',
+          gap: '14px',
           marginBottom: '2.5rem',
           marginTop: '1.2rem',
         }}
       >
-        {quickLinks.map((link, i) => (
+        {quickLinks.map((link) => (
           <a
-            key={i}
+            key={link.title}
             href={link.link}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={link.title}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: 36,
-              height: 36,
+              width: 40,
+              height: 40,
               borderRadius: '50%',
-              background: 'rgba(255,255,255,0.04)',
-              boxShadow: '0 2px 8px 0 rgba(33,150,243,0.07)',
-              color: '#fff',
-              fontSize: 20,
-              transition: 'background 0.18s, color 0.18s, transform 0.15s',
+              border: 'none',
+              background: '#000',
+              boxShadow: '0 6px 14px rgba(0, 0, 0, 0.22)',
+              transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
               textDecoration: 'none',
             }}
-            onMouseOver={e => {
-              e.currentTarget.style.background = 'rgba(33,150,243,0.13)';
-              e.currentTarget.style.color = '#2196f3';
-              e.currentTarget.style.transform = 'scale(1.10)';
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = '#111'
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.04)'
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.3)'
             }}
-            onMouseOut={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-              e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.transform = 'scale(1)';
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = '#000'
+              e.currentTarget.style.transform = 'translateY(0) scale(1)'
+              e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
             }}
           >
-            <img src={link.img} alt={link.title} style={{ width: 18, height: 18, filter: 'brightness(1.1)' }} />
+            <img
+              src={link.img}
+              alt={link.title}
+              style={{
+                width: 18,
+                height: 18,
+                filter: 'brightness(0) invert(1)',
+              }}
+            />
           </a>
         ))}
       </div>
-
     </section>
-  );
+  )
 }
