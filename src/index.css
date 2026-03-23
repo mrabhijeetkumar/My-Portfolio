@@ -1166,3 +1166,115 @@ textarea.field {
     transition-duration: 0.001ms !important;
   }
 }
+.education-track {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding-left: 1rem;
+}
+
+.education-track::before {
+  content: '';
+  position: absolute;
+  left: 0.18rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent-strong) 65%, transparent));
+  opacity: 0.8;
+}
+
+.education-card {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  padding: 1rem;
+  margin-left: 0.55rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.education-card::before {
+  content: '';
+  position: absolute;
+  left: -1.15rem;
+  top: 1.45rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+}
+
+.education-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+}
+
+.education-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.education-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  flex-shrink: 0;
+}
+
+.education-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: var(--font-display);
+}
+
+.education-degree,
+.education-period,
+.education-grade,
+.education-summary {
+  margin: 0;
+}
+
+.education-degree {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.education-period,
+.education-summary {
+  color: var(--text-muted);
+}
+
+.education-period {
+  font-size: 0.9rem;
+}
+
+.education-grade {
+  margin-top: 0.75rem;
+}
+
+.education-summary {
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 600px) {
+  .education-track {
+    padding-left: 0.75rem;
+  }
+
+  .education-card {
+    margin-left: 0.4rem;
+  }
+
+  .education-card::before {
+    left: -0.97rem;
+  }
+}
