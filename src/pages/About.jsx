@@ -4,13 +4,13 @@ const withBase = (path) => `${import.meta.env.BASE_URL}${path}`;
 function About() {
     return (
         <section
+            className="content-shell unified-section-shell about-section"
             style={{
                 minHeight: "80vh",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "none",
                 padding: "3.5rem 1rem 2.5rem 1rem",
             }}
         >

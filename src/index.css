@@ -71,9 +71,9 @@
 }
 
 :root[data-theme='light'] {
-  --bg: #f2f7ff;
-  --bg-secondary: #dceafe;
-  --surface: rgba(255, 255, 255, 0.82);
+  --bg: #f7fbff;
+  --bg-secondary: #e8f1ff;
+  --surface: #ffffff;
   --text: #12243a;
   --text-muted: #4f647a;
   --accent: #0078d4;
@@ -90,7 +90,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + 18px);
+  scroll-padding-top: var(--nav-height);
 }
 
 * {
@@ -117,6 +117,17 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+:root[data-theme='light'] body {
+  background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  background-attachment: fixed;
+}
+
+:root[data-theme='light'] .app-shell::before,
+:root[data-theme='light'] .app-shell::after {
+  opacity: 0;
+  animation: none;
 }
 
 a {
@@ -178,10 +189,14 @@ h4 {
   position: relative;
   width: min(1180px, 100% - 2.2rem);
   margin: 0 auto;
-  padding: calc(var(--section-pad) * 0.4) 0;
-  scroll-margin-top: calc(var(--nav-height) + 20px);
+  padding: clamp(0.95rem, 1.6vw, 1.35rem);
+  scroll-margin-top: var(--nav-height);
   content-visibility: auto;
   contain-intrinsic-size: 500px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 96%, var(--bg) 4%);
+  box-shadow: var(--shadow-soft);
   --section-local-duration: var(--section-reveal-duration);
   --section-local-offset: var(--section-reveal-offset);
   opacity: 0;
@@ -259,20 +274,30 @@ h4 {
 }
 
 
-.content-shell,
-.section-block {
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  border-radius: 18px;
-  box-shadow: 0 2px 8px 0 color-mix(in srgb, var(--accent) 8%, transparent);
+.content-shell {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   border: none;
   backdrop-filter: none;
-  transition: box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
+}
+
+.unified-section-shell {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.home-section,
+.about-section,
+.contact-section {
+  backdrop-filter: none;
 }
 
 .content-shell:hover {
-  border-color: none;
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 4px 18px 0 rgba(0, 80, 180, 0.08);
+  transform: none;
+  box-shadow: none;
 }
 
 .section-header {
@@ -712,6 +737,19 @@ h4 {
   flex-direction: column;
   gap: 0.85rem;
   transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+
+.skills-container,
+.skills-stage,
+.skill-box,
+.project-card,
+.cert-card,
+.resume-card,
+.about-card,
+.contact-card,
+.skills-card {
+  border-radius: 8px;
 }
 
 .project-card:hover,
