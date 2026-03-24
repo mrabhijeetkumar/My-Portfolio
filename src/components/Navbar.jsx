@@ -46,7 +46,9 @@ export default function Navbar() {
   const handleNavigate = (sectionId) => {
     const section = document.getElementById(sectionId)
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const navHeight = document.querySelector('.site-header')?.offsetHeight ?? 0
+      const top = section.getBoundingClientRect().top + window.scrollY - navHeight - 6
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       setIsMobileOpen(false)
     }
   }

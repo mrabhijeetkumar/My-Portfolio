@@ -120,6 +120,7 @@ export default function Contact() {
 
   return (
     <section
+      className="content-shell unified-section-shell contact-section"
       style={{
         minHeight: "100vh",
         width: "100%",
@@ -127,8 +128,6 @@ export default function Contact() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        background:
-          "radial-gradient(circle at 25% 25%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 80%)",
         color: "var(--text)",
         padding: "2rem 1.5rem 4rem",
         textAlign: "center",
