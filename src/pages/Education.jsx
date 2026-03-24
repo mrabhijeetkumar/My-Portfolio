@@ -13,7 +13,7 @@ const EDUCATION_ITEMS = [
   },
   {
     institute: 'Baulia SR. Secondary, Baulia, Rohtas-Bihar',
-    degree: 'ISC (Class XII)',
+    degree: 'BSEB (Class XII)',
     period: 'Apr 2021 – Apr 2023',
     grade: '67%',
     summary:
@@ -21,8 +21,8 @@ const EDUCATION_ITEMS = [
   },
   {
     institute: 'Utkramit Madhamik School, Majhigawan, Rohtas-Bihar',
-    degree: 'ICSE (Class X)',
-    period: 'Apr 2011 – Apr 2020',
+    degree: 'BSEB (Class X)',
+    period: 'Apr 2019 – Apr 2021',
     grade: '82%',
     summary:
       'Built core academic foundation through strong performance in science, mathematics, and communication.',
