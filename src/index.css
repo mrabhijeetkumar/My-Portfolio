@@ -189,10 +189,14 @@ h4 {
   position: relative;
   width: min(1180px, 100% - 2.2rem);
   margin: 0 auto;
-  padding: calc(var(--section-pad) * 0.4) 0;
+  padding: clamp(0.95rem, 1.6vw, 1.35rem);
   scroll-margin-top: var(--nav-height);
   content-visibility: auto;
   contain-intrinsic-size: 500px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 96%, var(--bg) 4%);
+  box-shadow: var(--shadow-soft);
   --section-local-duration: var(--section-reveal-duration);
   --section-local-offset: var(--section-reveal-offset);
   opacity: 0;
@@ -270,8 +274,7 @@ h4 {
 }
 
 
-.content-shell,
-.section-block {
+.content-shell {
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -747,6 +750,19 @@ h4 {
   flex-direction: column;
   gap: 0.85rem;
   transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+
+.skills-container,
+.skills-stage,
+.skill-box,
+.project-card,
+.cert-card,
+.resume-card,
+.about-card,
+.contact-card,
+.skills-card {
+  border-radius: 8px;
 }
 
 .project-card:hover,
