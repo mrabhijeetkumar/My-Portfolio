@@ -66,7 +66,7 @@ function About() {
                             letterSpacing: "-0.2px",
                         }}
                     >
-                        Frontend Developer & Machine Learning Engineer
+                        Full Stack Developer & AI - ML Engineer
                     </h3>
                     <p
                         style={{
