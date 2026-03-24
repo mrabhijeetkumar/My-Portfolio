@@ -55,6 +55,7 @@ export default function Home() {
 
   return (
     <section
+      className="content-shell unified-section-shell home-section"
       style={{
         minHeight: 'calc(100vh - var(--nav-height))',
         width: '100%',
@@ -67,8 +68,6 @@ export default function Home() {
         paddingLeft: 'clamp(0.85rem, 2.5vw, 1.4rem)',
         paddingRight: 'clamp(0.85rem, 2.5vw, 1.4rem)',
         margin: 0,
-        background:
-          'radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 80%)',
         color: 'var(--text)',
         boxSizing: 'border-box',
       }}

@@ -90,7 +90,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + 18px);
+  scroll-padding-top: var(--nav-height);
 }
 
 * {
@@ -179,7 +179,7 @@ h4 {
   width: min(1180px, 100% - 2.2rem);
   margin: 0 auto;
   padding: calc(var(--section-pad) * 0.4) 0;
-  scroll-margin-top: calc(var(--nav-height) + 20px);
+  scroll-margin-top: var(--nav-height);
   content-visibility: auto;
   contain-intrinsic-size: 500px;
   --section-local-duration: var(--section-reveal-duration);
@@ -269,6 +269,19 @@ h4 {
   transition: box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+
+
+.unified-section-shell {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.home-section,
+.about-section,
+.contact-section {
+  backdrop-filter: blur(3px);
+}
 .content-shell:hover {
   border-color: none;
   transform: translateY(-1px) scale(1.01);
