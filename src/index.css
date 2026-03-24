@@ -295,6 +295,19 @@ h4 {
   backdrop-filter: none;
 }
 
+
+
+.unified-section-shell {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.home-section,
+.about-section,
+.contact-section {
+  backdrop-filter: blur(3px);
+}
 .content-shell:hover {
   transform: none;
   box-shadow: none;
