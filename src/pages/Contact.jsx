@@ -9,7 +9,7 @@ const githubLogo = withBase("github.png");
 const linkedinLogo = withBase("linkedin.png");
 const gmailLogo = withBase("gmail.png");
 const whatsappLogo = withBase("whatsapp.png");
-const instagramLogo = withBase("insta.png");
+const twitterLogo = withBase("twitter.png");
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -109,13 +109,11 @@ export default function Contact() {
   const quickLinks = [
     { img: githubLogo, title: "GitHub", link: "https://github.com/mrabhijeetkumar" },
     {
-      img: linkedinLogo,
-      title: "LinkedIn",
-      link: "https://www.linkedin.com/in/mrabhijeetkumar/",
+      img: linkedinLogo, title: "LinkedIn", link: "https://www.linkedin.com/in/mrabhijeetkumar/",
     },
     { img: gmailLogo, title: "Email", link: "mailto:abhijeetmehtaji@gmail.com" },
     { img: whatsappLogo, title: "WhatsApp", link: "https://wa.me/+917739009324" },
-    { img: instagramLogo, title: "Instagram", link: "https://www.instagram.com/the.abhijeetji/" },
+    { img: twitterLogo, title: "Twitter", link: "https://x.com/Abhijeet7_" },
   ];
 
   return (

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedinIn, FaEnvelope, FaWhatsapp, FaInstagram } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaWhatsapp, FaTwitter } from 'react-icons/fa'
 
 const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 
 const photo = withBase('profile.png')
 const resumeLink = withBase('resume.pdf')
+const twitterLogo = withBase('twitter.png')
 
 export default function Home() {
   const quickLinks = [
@@ -13,7 +14,7 @@ export default function Home() {
     { icon: FaLinkedinIn, title: 'LinkedIn', link: 'https://www.linkedin.com/in/mrabhijeetkumar/' },
     { icon: FaEnvelope, title: 'Email', link: 'mailto:abhijeetmehtaji@gmail.com' },
     { icon: FaWhatsapp, title: 'WhatsApp', link: 'https://wa.me/+917739009324' },
-    { icon: FaInstagram, title: 'Instagram', link: 'https://www.instagram.com/the.abhijeetji/' },
+    { img: twitterLogo, title: 'Twitter', link: 'https://x.com/Abhijeet7_' },
   ]
 
   const typeStrings = [
@@ -334,7 +335,6 @@ export default function Home() {
               }}
             >
               {quickLinks.map((link) => {
-                const Icon = link.icon
                 return (
                   <a
                     key={link.title}
@@ -366,7 +366,11 @@ export default function Home() {
                       e.currentTarget.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.22)'
                     }}
                   >
-                    <Icon size={26} color="var(--accent)" aria-hidden="true" />
+                    {link.icon ? (
+                      <link.icon size={26} color="var(--accent)" aria-hidden="true" />
+                    ) : link.img ? (
+                      <img src={link.img} alt={link.title} style={{ width: 26, height: 26, filter: 'invert(60%) sepia(100%) saturate(1000%) hue-rotate(140deg)' }} aria-hidden="true" />
+                    ) : null}
                   </a>
                 )
               })}

@@ -37,22 +37,16 @@ const PROJECTS = [
         live: 'https://mrabhijeetkumar.github.io/Personalised-Gift-Recomendation-Website/',
         code: 'https://github.com/mrabhijeetkumar/Personalised-Gift-Recomendation-Website',
     },
+
     {
-        title: 'Certificate Showcase',
-        desc: 'Built a dynamic gallery to display earned certificates and achievements. Uses React and CSS grid for a clean, filterable layout. Makes credentials easily accessible for recruiters.',
-        image: withBase('gallery/ach1.svg'),
-        tech: ['React', 'CSS Grid', 'SVG'],
-        live: '#certificates',
-        code: 'https://github.com/mrabhijeetkumar/Certificate-Showcase',
+        title: 'Finance Track Pro',
+        desc: 'Designed and developed a full-stack financial management platform tailored for students to track income, expenses, and budgets in real time. The system delivers actionable insights through dynamic dashboards, monthly analytics, and AI-driven expense predictions to support smarter financial decisions.',
+        image: withBase('gallery/FinLogo.png'),
+        tech: ['React', 'Flask', 'Supabase', 'JavaScript', 'HTML', 'CSS', 'REST API'],
+        live: 'https://budgifyx.netlify.app/',
+        code: 'https://github.com/mrabhijeetkumar/student-finance-budget-management-system',
     },
-    {
-        title: 'Resume Parser Tool',
-        desc: 'Engineered a tool to extract and summarize key skills from uploaded resumes using Python and NLP. Helps automate candidate screening for hiring teams.',
-        image: withBase('gallery/project2.svg'),
-        tech: ['Python', 'NLP', 'Flask'],
-        live: '#resume',
-        code: 'https://github.com/mrabhijeetkumar/Resume-Parser',
-    },
+
 ]
 
 export default function Projects() {
